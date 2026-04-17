@@ -72,15 +72,26 @@ describe("Deberia de cortar la ejecucion si level es mayor que 25", async () => 
 
 describe("Deberia de funcionar bien los casos base", async () => {
     test("Deberia de funcionar si level es 1", async () => {
+        const logMocks = mock.method(console, "log", () => { })
+
         const level = pascalTriangle(1)
 
-        assert.strictEqual(level, "1")
+        assert.strictEqual(logMocks.mock.calls.length, 1)
+        assert.strictEqual(logMocks.mock.calls[0].arguments[0], "1")
+        
+        logMocks.mock.restore()
     })
 
     test("Deberia de funcionar si level es 2", async () => {
+        const logMocks = mock.method(console, "log", () => { })
+
         const level = pascalTriangle(2)
 
-        assert.strictEqual(level, "1 1")
+        assert.strictEqual(logMocks.mock.calls.length, 2)
+        assert.strictEqual(logMocks.mock.calls[0].arguments[0], "1")
+        assert.strictEqual(logMocks.mock.calls[1].arguments[0], "1 1")
+        
+        logMocks.mock.restore()
     })
 })
 

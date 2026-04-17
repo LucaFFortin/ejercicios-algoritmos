@@ -26,10 +26,10 @@ export default function pascalTriangle(level = 2) {
     let prevLevel = secondLevel
 
     printLevel(firstLevel)
-    if (level <= 1) return "1"
+    if (level <= 1) return
 
     printLevel(secondLevel)
-    if (level <= 2) return "1 1"
+    if (level <= 2) return
 
     for (let i = 0; i < level - 2; i++) {
         const currLevel = calculateLevel(prevLevel)
