@@ -1,0 +1,54 @@
+17/04
+1.De una temperatura en Celsius (C) obtener la temperatura equivalente en Fahrenheit (F) de acuerdo a la siguiente fórmula:
+
+F=(9/5)×C+32
+
+
+2. Una empresa de alquiler de automóviles sin conductor desea un programa para emitir las facturas a sus clientes, teniendo en cuenta los siguientes puntos:
+
+Cantidad fija de $5000 si no se rebasan o superan los 300 kilómetros.
+Si la distancia recorrida es mayor a 300 kilómetros y menor o igual a 1000 kilómetros:
+$5000 más kilometraje a razón de $30 por kilómetro (por los kilómetros que excedan los 300).
+Si la distancia es mayor a 1000 kilómetros:
+$5000 más kilometraje:
+$30 por kilómetro para distancias comprendidas entre 300 y 1000 kilómetros.
+$20 por kilómetro para distancias mayores a 1000 kilómetros.
+
+
+3.Escribir un programa que pueda deducir si un número ingresado es primo o compuesto.
+Un número entero es primo si no tiene más divisores que él mismo y la unidad (1).
+
+
+4. Escribir un programa que calcule la suma de la siguiente serie armónica:
+
+1+ 1/2 + 1/3 + ... + 1/n
+
+Donde n es especificado por el usuario.
+
+
+24/04
+5.Escribir un programa que ingrese una frase y permita calcular la frecuencia de aparición de cada letra en el texto.
+
+La solución debe presentarse en forma de histograma.
+
+Nota: No distingue entre mayúsculas y minúsculas.
+
+
+6.Escribir un programa que lea las dimensiones de una matriz, la cargue y a continuación encuentre el mayor y el menor elemento de la matriz, junto con sus posiciones.
+
+
+7.Una matriz cuadrada A se dice que es simétrica si:
+
+A[i,j]=A[j,i]
+
+para todo i, j dentro de los límites de la matriz.
+
+Escribir una función que decida si una matriz es o no es simétrica.
+
+
+8.Determinar los números vampiro de 4 cifras.
+
+Son números naturales, enteros y positivos con un número par de cifras que tienen una característica especial:
+al multiplicar la mitad de sus cifras con la otra mitad da como resultado el número original.
+
+Nota: Hay que buscar la combinación exacta con sus cifras.
