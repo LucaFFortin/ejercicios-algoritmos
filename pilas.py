@@ -35,7 +35,7 @@ def barrido(pila):
     paux = Pila()
     while (not pila_vacia(pila)):
         dato = desapilar(pila)
-        print(dato)
+        print(dato.info)
         apilar(paux, dato)
     
     while (not pila_vacia(paux)):
