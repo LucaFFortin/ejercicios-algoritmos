@@ -13,9 +13,6 @@ def factura_auto(kilometros):
         kilometros_primer_tramo = kilometros_a_facturar - kilometros_segundo_tramo
         return 5000 + (kilometros_primer_tramo * 30) + (kilometros_segundo_tramo * 50)
 
-print("facturas")
-print("si se facturan 0 kilometros entonces se emite:", factura_auto(0))
-print("si se facturan 200 kilometros entonces se emite:", factura_auto(200))
-print("si se facturan 400 kilometros entonces se emite:", factura_auto(400))
-print("si se facturan 1000 kilometros entonces se emite:", factura_auto(1000))
-print("si se facturan 1500 kilometros entonces se emite:", factura_auto(1500))
+# main
+entrada = int(input("Ingrese la cantidad de kilometros a facturar: "))
+print(factura_auto(entrada))

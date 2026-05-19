@@ -10,5 +10,5 @@ def frecuencia_letras(frase):
     for k, v in letras.items():
         print(f"Letra {k}: {'#' * v}")
 
-print("frecuencia de letras")
-frecuencia_letras("manolo")
+entrada = input("Ingrese una palabra para ver su frecuencia de letras: ")
+frecuencia_letras(entrada)

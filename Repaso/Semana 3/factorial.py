@@ -5,7 +5,6 @@ def factorial(num):
 
     print(cont)
 
-factorial(1) # 1
-factorial(2) # 2
-factorial(3) # 6
-factorial(4) # 24
+# main
+entrada = int(input("Ingrese el numero para a factorizar: "))
+factorial(entrada)
