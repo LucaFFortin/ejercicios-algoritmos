@@ -132,6 +132,16 @@ ejercicios = {
         13: [
             "python",
             r"Pilas\ironman.py"
+        ],
+
+        14: [
+            "python",
+            r"Pilas\insertar_ascendente.py"
+        ],
+
+        17: [
+            "python",
+            r"Pilas\separar_parrafo.py"
         ]
     }
 }
@@ -158,6 +168,7 @@ SEMANA 4
 11: Lector matriz
 12: Matriz simetrica
 13: Numeros vampiros"""
+
 lista_ejercicios_pilas = """
 1: Ocurrencias de un elemento
 2: Eliminar elementos impares
@@ -172,11 +183,14 @@ lista_ejercicios_pilas = """
 11: Contar vocales
 12: Encontrar personajes de Star Wars
 13: Trajes de Iron Man
+14: insertar ordenado
+17: separar parrafo
 """
+
 print("Bienvenido al sistema de ejercicios")
 while (True):
     print("")
-    opcion = input("Que ejercicios desea ver (Repaso o Pilas): ").lower()
+    opcion = input("Que ejercicios desea ver (Repaso o Pilas, 0 para salir): ").lower()
     if (opcion == "repaso"):
         print(lista_ejercicios_repaso)
         opcion = int(input("Escriba el numero del ejercicio que desea ejecutar: "))
@@ -185,4 +199,5 @@ while (True):
         print(lista_ejercicios_pilas)
         opcion = int(input("Escriba el numero del ejercicio que desea ejecutar: "))
         subprocess.run(ejercicios["Pilas"][opcion])
+    elif (opcion == "0"): break
         
