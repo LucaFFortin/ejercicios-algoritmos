@@ -142,6 +142,21 @@ ejercicios = {
         17: [
             "python",
             r"Pilas\separar_parrafo.py"
+        ],
+        
+        18: [
+            "python",
+            r"Pilas\objetos_oficina.py"
+        ],
+        
+        20: [
+            "python",
+            r"Pilas\pasos_robot.py"
+        ],
+
+        23: [
+            "python",
+            r"Pilas\temperatura_abril.py"
         ]
     }
 }
@@ -170,21 +185,24 @@ SEMANA 4
 13: Numeros vampiros"""
 
 lista_ejercicios_pilas = """
-1: Ocurrencias de un elemento
-2: Eliminar elementos impares
-3: Reemplazar ocurrencias de un elemento
-4: Invertir una pila
-5: Palíndromo
-6: Palabra inversa
-7: Eliminar elemento i-ésimo
-8: Pila de cartas
-9: Factorial con pila
+1:  Ocurrencias de un elemento
+2:  Eliminar elementos impares
+3:  Reemplazar ocurrencias de un elemento
+4:  Invertir una pila
+5:  Palíndromo
+6:  Palabra inversa
+7:  Eliminar elemento i-ésimo
+8:  Pila de cartas
+9:  Factorial con pila
 10: Insertar Atenea en posición i
 11: Contar vocales
 12: Encontrar personajes de Star Wars
 13: Trajes de Iron Man
 14: insertar ordenado
 17: separar parrafo
+18: Insertar elementos ordenados
+20: Movimientos de robot
+23: Temperaturas de abril
 """
 
 print("Bienvenido al sistema de ejercicios")
