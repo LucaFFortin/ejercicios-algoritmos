@@ -26,9 +26,8 @@ def borrar_elemento(pila, posicion):
 print("Ingrese los datos de la Pila:")
 pila = Pila()
 while(True):
-    nodo = nodoPila()
-    nodo.info = input("Ingrese el dato que quiere guardar en la pila: S para salir: ")
-    if (nodo.info == "S"): break
+    nodo = input("Ingrese el dato que quiere guardar en la pila: S para salir: ")
+    if (nodo == "S"): break
     apilar(pila, nodo)
 
 entrada = int(input("Ingrese la posicion del numero a eliminar: "))
