@@ -12,22 +12,10 @@ mayores = []
 menores = []
 
 def insertar_temperatura(pila, temperatura, dia):
-    primero = True
     try:
         temperatura = float(temperatura)
     except:
         print("Ingrese un numero valido como temperatura.")
-
-    if (primero):
-        primero = False
-        max = temperatura
-        min = temperatura
-    else:
-        if (temperatura > max): max = temperatura
-        elif (temperatura < min): min = temperatura
-    
-    cont += 1
-    acc += temperatura
 
     apilar(pila, [temperatura, dia])
 
