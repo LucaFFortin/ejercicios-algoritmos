@@ -216,6 +216,9 @@ while (True):
     elif (opcion == "pilas"):
         print(lista_ejercicios_pilas)
         opcion = int(input("Escriba el numero del ejercicio que desea ejecutar: "))
-        subprocess.run(ejercicios["Pilas"][opcion])
+        if (opcion in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 20, 23]):
+            subprocess.run(ejercicios["Pilas"][opcion])
+        else:
+            print("El programa seleccionado no existe.")
     elif (opcion == "0"): break
         
