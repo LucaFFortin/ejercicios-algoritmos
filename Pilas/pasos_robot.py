@@ -40,6 +40,8 @@ def movimientos_contrarios(pila):
         x = desapilar(paux)
         apilar(pila, x)
 
+    
+
     return paux_contraria
 
 # main
@@ -52,7 +54,10 @@ while(True):
     otro = input("Desea ingresar otro movimiento, 1 para si, 0 para no: ")
     if (otro == "0"): break
 
-pila_contraria = movimientos_contrarios(pila)
+if (not pila_vacia(pila)):
+    pila_contraria = movimientos_contrarios(pila)
+else:
+    print("La pila esta vacia, por lo tanto no se puede calcular pasos contrarios.")
 
 print("Movimientos que realizo el robot: ")
 barrido(pila)

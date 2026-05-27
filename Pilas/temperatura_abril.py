@@ -16,16 +16,21 @@ def insertar_temperatura(pila, temperatura, dia):
         temperatura = float(temperatura)
     except:
         print("Ingrese un numero valido como temperatura.")
-
+        return
+    
     apilar(pila, [temperatura, dia])
 
-def determinar_valores():
+def determinar_valores(pila):
     primero = True
     max = 0
     min = 0
 
     cont = 0
     acc = 0
+
+    if (pila_vacia(pila)):
+        print("No hay datos para hacer el calculo")
+        return
 
     paux = Pila()
     while (not pila_vacia(pila)):
@@ -50,6 +55,10 @@ def determinar_valores():
     return [min, max, cont, acc]
 
 def determinar_variaciones(pila):
+    if (pila_vacia(pila)):
+        print("No hay datos para hacer el calculo")
+        return
+
     paux = Pila()
     while (not pila_vacia(pila)):
         x = desapilar(pila)
@@ -69,12 +78,12 @@ def determinar_variaciones(pila):
 pila = Pila()
 while(True):
     dia = input("Ingrese el numero del dia de abril: ")
-    temperatura = input("Ingrese la temperatura de ese dia: ")
+    temperatura = input("Ingrese la temperatura de ese dia: ") 
     insertar_temperatura(pila, temperatura, dia)
     otro = input("Desea ingresar mas registros de temperatura, 1 para si, 0 para no: ")
     if (otro == "0"): break
 
-[min, max, cont, acc] = determinar_valores()
+[min, max, cont, acc] = determinar_valores(pila)
 
 media = acc / cont
 rango = max - min
