@@ -205,14 +205,16 @@ lista_ejercicios_pilas = """
 23: Temperaturas de abril
 """
 
-print("Bienvenido al sistema de ejercicios")
+print("Bienvenido al sistema de ejercicios\n")
 while (True):
-    print("")
     opcion = input("Que ejercicios desea ver (Repaso o Pilas, 0 para salir): ").lower()
     if (opcion == "repaso"):
         print(lista_ejercicios_repaso)
         opcion = int(input("Escriba el numero del ejercicio que desea ejecutar: "))
-        subprocess.run(ejercicios["Repaso"][opcion])
+        if (opcion in range(14)):
+            subprocess.run(ejercicios["Repaso"][opcion])
+        else:
+            print("El programa seleccionado no existe.")
     elif (opcion == "pilas"):
         print(lista_ejercicios_pilas)
         opcion = int(input("Escriba el numero del ejercicio que desea ejecutar: "))
@@ -221,4 +223,5 @@ while (True):
         else:
             print("El programa seleccionado no existe.")
     elif (opcion == "0"): break
-        
+    else:
+        print("Opcion invalida, seleccione una de las opciones listadas.")
