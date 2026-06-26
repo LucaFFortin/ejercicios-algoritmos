@@ -2,8 +2,7 @@ from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia, en_cima, tamani
 
 def lista_a_pila(lista, pila):
     for i in lista:
-        nodo = nodoPila()
-        nodo.info = i
+        nodo = i
         apilar(pila, nodo)
 
 def ver_palabra_inversa(cadena):
@@ -13,11 +12,10 @@ def ver_palabra_inversa(cadena):
     lista = []
     while (not pila_vacia(pila)):
         x = desapilar(pila)
-        lista.append(x.info)
+        lista.append(x)
 
-    print("".join(lista))
+    return "".join(lista)
 
 # main
 entrada = input("Ingrese la palabra a invertir: ")
-print("La palabra invertida es: ")
-ver_palabra_inversa(entrada)
+print(f"La palabra invertida es: {ver_palabra_inversa(entrada)}")

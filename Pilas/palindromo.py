@@ -2,8 +2,7 @@ from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia, en_cima, tamani
 
 def lista_a_pila(lista, pila):
     for i in lista:
-        nodo = nodoPila()
-        nodo.info = i
+        nodo = i
         apilar(pila, nodo)
 
 def es_palindromo(cadena):
@@ -23,16 +22,19 @@ def es_palindromo(cadena):
         elem1 = desapilar(pila)
         elem2 = desapilar(pila2)
         
-        if (not elem1.info == elem2.info): palindromo = False
+        if (not elem1 == elem2): palindromo = False
     
     return palindromo
 
 # main
 entrada = input("Ingrese la palabra a verificar: ")
-resultado = es_palindromo(entrada)
-if (resultado):
-    print(f"{entrada} es palindromo")
+if (entrada == ""):
+    print("La entrada esta vacia, no se puede realizar el proceso.")
 else:
-    print(f"{entrada} no es palindromo")
+    resultado = es_palindromo(entrada)
+    if (resultado):
+        print(f"{entrada} es palindromo")
+    else:
+        print(f"{entrada} no es palindromo")
 
 

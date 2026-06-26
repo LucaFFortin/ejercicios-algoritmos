@@ -2,12 +2,23 @@ from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia, en_cima, tamani
 
 """
 asumiendo que los nodos guardan la informacion de la siguiente manera
-Nodo.info: [
+Nodo: [
     modelo: string,
     pelicula: string,
     estado: [dañado, impecable, destruido]
 ]
 """
+
+string_entrada = """Eliga una opcion a realizar: 
+1 = ingresar un modelo, 
+2 = revisar si esta hulkbuster, 
+3 = listar modelos dañados, 
+4 = eliminar modelos dañados, 
+5 = insertar el modelo Mark LXXXV, 
+6 = mostrar peliculas en las que fue usado un traje, 0 para salir: """
+
+estados_trajes = ["dañado", "impecable", "destruido"]
+
 # con requerimiento del item d
 def añadir_modelo(pila, modelo_insertar):
     paux = Pila()
@@ -87,6 +98,9 @@ def eliminar_modelos_dañados(pila):
             apilar(paux, [modelo, pelicula, estado])
         print(f"Modelo destuido: {modelo}")
 
+    if (pila_vacia(paux)):
+        print("No hay modelos dañados en la pila, por lo tanto no se eliminaron modelos de esta.")
+
     while (not pila_vacia(paux)):
         [modelo, pelicula, estado] = desapilar(paux)
         apilar(paux, [modelo, pelicula, estado])
@@ -109,6 +123,9 @@ def insertar_Mark_LXXXV(pila):
 
     if (modelo_en_pila):
         print("El modelo ya esta ingresado esta en la pila")
+        return
+    else:
+        print("El modelo fue insertado en la pila.")
 
     while (not pila_vacia(paux)):
         if (not modelo_en_pila):
@@ -138,14 +155,18 @@ def mostrar_trajes(pila, pelicula_mostrar):
 # main
 pila = Pila()
 while(True):
-    entrada = input("Ingrese: 1 = ingresar un modelo, 2 = revisar si esta hulkbuster, 3 = listar modelos dañados, 4 = eliminar modelos dañados, 5 = insertar el modelo Mark LXXXV, 6 = mostrar peliculas en las que fue usado un traje, 0 para salir: ")
+    entrada = input(string_entrada)
 
     if (entrada == "0"): break
     elif (entrada == "1"):
         pelicula = input("Ingrese el nombre de la pelicula: ")
         modelo = input("Ingrese el modelo utilizado en la pelicula: ")
-        estado = input("Ingrese el estado del modelo: ")
-        añadir_modelo(pila, [modelo, pelicula, estado])
+        estado = input("Ingrese el estado del modelo (debe estar dentro de estas opciones [dañado, impecable, destruido]): ")
+
+        if (estado.lower() not in estados_trajes):
+            print("El estado del traje no esta en las opciones listadas.")
+        else:
+            añadir_modelo(pila, [modelo, pelicula, estado])
     elif (entrada == "2"):
         hulkbuster_utilizado(pila)
     elif (entrada == "3"):

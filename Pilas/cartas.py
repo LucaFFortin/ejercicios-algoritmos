@@ -6,21 +6,28 @@ pila_oro = Pila()
 pila_basto = Pila()
 pila_espada = Pila()
 pila_copa = Pila()
-pila_auxiliar = Pila()
-
-cartas_usadas = []
 
 while tamanio(mazo) < 48:
 
     numero = random.randint(1, 12)
     palo = random.choice(["oro", "basto", "espada", "copa",])
     carta = [palo, numero]
+        
+    carta_existe = False
+    paux = Pila()
+    while (not pila_vacia(mazo)):
+        dato = desapilar(mazo)
+        apilar(paux, dato)
 
-    if carta not in cartas_usadas:
-        cartas_usadas.append(carta)
-        apilar(mazo, carta)
-        print(carta)
+    while (not pila_vacia(paux)):
+        dato = desapilar(paux)
+        if (dato == carta): carta_existe = True
+        apilar(mazo, dato)
 
+    if (not carta_existe): apilar(mazo, carta)
+
+print("Cartas en el mazo:")
+barrido(mazo)
 
 while pila_vacia(mazo) == False:
     carta = desapilar(mazo)
@@ -34,60 +41,30 @@ while pila_vacia(mazo) == False:
     else:
         apilar(pila_copa, carta)
 
+def ordenar_cartas_palo (pila, palo):
+    pila_auxiliar = Pila()
+    while pila_vacia(pila) == False:
+        carta = desapilar(pila)
+
+        while pila_vacia(pila_auxiliar)== False and (en_cima(pila_auxiliar)[1] > carta[1]):
+            apilar(pila, desapilar(pila_auxiliar))
+        apilar(pila_auxiliar, carta)
+    while pila_vacia(pila_auxiliar) == False:
+        apilar(pila, desapilar(pila_auxiliar))
+
+    print(f"Pila de {palo} ordenada:")
+
+    barrido(pila)
+
+
 ordenar = input("que pila quiere ordenar: oro, basto, espada, copa: ").lower()
 if ordenar == "oro":
-    while pila_vacia(pila_oro) == False:
-        carta = desapilar(pila_oro)
-
-        while pila_vacia(pila_auxiliar)== False and (en_cima(pila_auxiliar)[1] > carta[1]):
-            apilar(pila_oro, desapilar(pila_auxiliar))
-        apilar(pila_auxiliar, carta)
-    while pila_vacia(pila_auxiliar) == False:
-        apilar(pila_oro, desapilar(pila_auxiliar))
-
-    print("Pila de oro ordenada:")
-
-    barrido(pila_oro)
-
+    ordenar_cartas_palo(pila_oro, ordenar)
 elif ordenar == "basto":
-    while pila_vacia(pila_basto) == False:
-        carta = desapilar(pila_basto)
-
-        while pila_vacia(pila_auxiliar)== False and (en_cima(pila_auxiliar)[1] > carta[1]):
-            apilar(pila_basto, desapilar(pila_auxiliar))
-        apilar(pila_auxiliar, carta)
-    while pila_vacia(pila_auxiliar) == False:
-        apilar(pila_basto, desapilar(pila_auxiliar))
-
-    print("Pila de basto ordenada:")
-
-    barrido(pila_basto)
-
+    ordenar_cartas_palo(pila_basto, ordenar)
 elif ordenar == "espada":
-    while pila_vacia(pila_espada) == False:
-        carta = desapilar(pila_espada)
-
-        while pila_vacia(pila_auxiliar)== False and (en_cima(pila_auxiliar)[1] > carta[1]):
-            apilar(pila_espada, desapilar(pila_auxiliar))
-        apilar(pila_auxiliar, carta)
-    while pila_vacia(pila_auxiliar) == False:
-        apilar(pila_espada, desapilar(pila_auxiliar))
-
-    print("Pila de espada ordenada:")
-
-    barrido(pila_espada)
+    ordenar_cartas_palo(pila_espada, ordenar)
 elif ordenar == "copa":
-    while pila_vacia(pila_copa) == False:
-        carta = desapilar(pila_copa)
-
-        while pila_vacia(pila_auxiliar)== False and (en_cima(pila_auxiliar)[1] > carta[1]):
-            apilar(pila_copa, desapilar(pila_auxiliar))
-        apilar(pila_auxiliar, carta)
-    while pila_vacia(pila_auxiliar) == False:
-        apilar(pila_copa, desapilar(pila_auxiliar))
-
-    print("Pila de copa ordenada:")
-
-    barrido(pila_copa)
+    ordenar_cartas_palo(pila_copa, ordenar)
 else:
-    print("Opcion incorrecta.")
+    print("El palo ingresado no es reconocido por el sistema.")

@@ -40,8 +40,6 @@ def movimientos_contrarios(pila):
         x = desapilar(paux)
         apilar(pila, x)
 
-    
-
     return paux_contraria
 
 # main

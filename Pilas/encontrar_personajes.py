@@ -6,9 +6,9 @@ def encontrar_personajes(pila):
     personajes = []
     while (not pila_vacia(pila)):
         x = desapilar(pila)
-        if (x.info in ["Leia Organa", "Boba Fett"]):
+        if (x in ["Leia Organa", "Boba Fett"]):
             encontrado = True
-            personajes.append(x.info)
+            personajes.append(x )
         apilar(paux, x)
 
     while (not pila_vacia(paux)):
@@ -22,9 +22,8 @@ def encontrar_personajes(pila):
 print("Ingrese personajes a la Pila:")
 pila = Pila()
 while(True):
-    nodo = nodoPila()
-    nodo.info = input("Ingrese el personaje que quiere guardar en la pila: S para salir: ")
-    if (nodo.info == "S"): break
+    nodo  = input("Ingrese el personaje que quiere guardar en la pila: S para salir: ")
+    if (nodo  == "S"): break
     apilar(pila, nodo)
 
 encontrado, personajes = encontrar_personajes(pila)

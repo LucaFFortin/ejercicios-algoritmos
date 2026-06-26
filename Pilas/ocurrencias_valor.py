@@ -5,23 +5,26 @@ def ocurrencias_valor(pila, valor):
     cont_ocurrencias = 0
     while (not pila_vacia(pila)):
         dato = desapilar(pila)
-        if (dato.info == valor):
+        if (dato == valor):
             cont_ocurrencias += 1
         apilar(paux, dato)
     
     while (not pila_vacia(paux)):
         dato = desapilar(paux)
         apilar(pila, dato)
-    
-    print(f"Ocurrencias del valor {valor} en la pila es de: {cont_ocurrencias} veces")
+    if (cont_ocurrencias == 0):
+        print(f"No se encontraron ocurrecias del valor {valor}.")
+    elif (cont_ocurrencias == 1):    
+        print(f"Ocurrencias del valor {valor} en la pila es de: {cont_ocurrencias} vez.")
+    else:
+        print(f"Ocurrencias del valor {valor} en la pila es de: {cont_ocurrencias} veces.")
 
 # main
 print("Ingrese los datos de la Pila:")
 pila = Pila()
 while(True):
-    nodo = nodoPila()
-    nodo.info = input("Ingrese el dato que quiere guardar en la pila: S para salir: ")
-    if (nodo.info == "S"): break
+    nodo = input("Ingrese el dato que quiere guardar en la pila: S para salir: ")
+    if (nodo == "S"): break
     apilar(pila, nodo)
 
 entrada = input("Ingrese el valor que quieres contar: ")

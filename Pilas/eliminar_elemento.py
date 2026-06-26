@@ -30,14 +30,21 @@ while(True):
     if (nodo == "S"): break
     apilar(pila, nodo)
 
-entrada = int(input("Ingrese la posicion del numero a eliminar: "))
+invalida = False
+try:
+    entrada = int(input("Ingrese la posicion del numero a eliminar: "))
+    if (entrada < 0 or entrada > tamanio(pila)): 
+        print("La entrada debe ser un numero mayor a cero y menor al tamaño de la pila.")
+        invalida = True
+except:
+    print("La entrada debe ser un numero valido.")
+    invalida = True
 
-print("Antes de borrar el elemento: ")
-barrido(pila)
+if (not invalida):
+    print("Antes de borrar el elemento: ")
+    barrido(pila)
 
-borrar_elemento(pila, entrada)
+    borrar_elemento(pila, entrada)
 
-print("Despues de borrar el elemento: ")
-barrido(pila)
-
-
+    print("Despues de borrar el elemento: ")
+    barrido(pila)
