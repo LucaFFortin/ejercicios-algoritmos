@@ -22,7 +22,7 @@ turnos_c = Cola()
 turnos_d = Cola()
 turnos_e = Cola()
 turnos_f = Cola()
-turnos_menor = Cola()
+turnos_mayor = Cola()
 
 while tamanio(turnos) < 1000:
     letra = random.choice(["A", "B", "C", "D", "E", "F"])
@@ -33,7 +33,7 @@ while tamanio(turnos) < 1000:
     if (letra in ["A", "C", "F"]): arribo(cola_1, turno)
     else: 
         arribo(cola_2, turno)
-        if (numero > 506): arribo(turnos_menor, turno)
+        if (numero > 506): arribo(turnos_mayor, turno)
 
     if (letra == "A"): arribo(turnos_a, turno)
     elif (letra == "B"): arribo(turnos_b, turno)
@@ -47,6 +47,37 @@ while tamanio(turnos) < 1000:
 if (tamanio(cola_1) > tamanio(cola_2)): print("La cola 1 tiene una mayor cantidad de turnos que la cola 2.")
 else: print("La cola 2 tiene una mayor cantidad de turnos que la cola 1.")
 
-# falta determinar pila de letra mayor
+if (tamanio(turnos_a) >= tamanio(turnos_b) and
+    tamanio(turnos_a) >= tamanio(turnos_c) and
+    tamanio(turnos_a) >= tamanio(turnos_d) and
+    tamanio(turnos_a) >= tamanio(turnos_e) and
+    tamanio(turnos_a) >= tamanio(turnos_f)):
+    print(f"La cola turnos_a tiene la mayor cantidad de turnos con {tamanio(turnos_a)} turnos.")
+elif (tamanio(turnos_b) >= tamanio(turnos_a) and
+      tamanio(turnos_b) >= tamanio(turnos_c) and
+      tamanio(turnos_b) >= tamanio(turnos_d) and
+      tamanio(turnos_b) >= tamanio(turnos_e) and
+      tamanio(turnos_b) >= tamanio(turnos_f)):
+    print(f"La cola turnos_b tiene la mayor cantidad de turnos con {tamanio(turnos_b)} turnos.")
+elif (tamanio(turnos_c) >= tamanio(turnos_a) and
+      tamanio(turnos_c) >= tamanio(turnos_b) and
+      tamanio(turnos_c) >= tamanio(turnos_d) and
+      tamanio(turnos_c) >= tamanio(turnos_e) and
+      tamanio(turnos_c) >= tamanio(turnos_f)):
+    print(f"La cola turnos_c tiene la mayor cantidad de turnos con {tamanio(turnos_c)} turnos.")
+elif (tamanio(turnos_d) >= tamanio(turnos_a) and
+      tamanio(turnos_d) >= tamanio(turnos_b) and
+      tamanio(turnos_d) >= tamanio(turnos_c) and
+      tamanio(turnos_d) >= tamanio(turnos_e) and
+      tamanio(turnos_d) >= tamanio(turnos_f)):
+    print(f"La cola turnos_d tiene la mayor cantidad de turnos con {tamanio(turnos_d)} turnos.")
+elif (tamanio(turnos_e) >= tamanio(turnos_a) and
+      tamanio(turnos_e) >= tamanio(turnos_b) and
+      tamanio(turnos_e) >= tamanio(turnos_c) and
+      tamanio(turnos_e) >= tamanio(turnos_d) and
+      tamanio(turnos_e) >= tamanio(turnos_f)):
+    print(f"La cola turnos_e tiene la mayor cantidad de turnos con {tamanio(turnos_e)} turnos.")
+else:
+    print(f"La cola turnos_f tiene la mayor cantidad de turnos con {tamanio(turnos_f)} turnos.")
 
-print(f"La cola menor tiene {tamanio(turnos_menor)} turnos cuyo numero es mayor a 506.")
+print(f"La cola menor tiene {tamanio(turnos_mayor)} turnos cuyo numero es mayor a 506.")
