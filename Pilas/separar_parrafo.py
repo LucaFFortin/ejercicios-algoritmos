@@ -20,8 +20,13 @@ contador_numeros = 0
 contiene_z = False
 
 parrafo = input("Ingrese un parrafo terminado en punto: ")
-
+termina_punto = False
 for caracter in parrafo:
+    if (parrafo[-1] != "."):
+        print("El parrafo no termina en punto, se cancela la ejecucion del programa.")
+        break
+    else:
+        termina_punto = True
 
     if caracter.lower() == "a" or caracter.lower() == "e" or caracter.lower() == "i" or caracter.lower() == "o" or caracter.lower() == "u":
         apilar(pila_vocales, caracter)
@@ -44,23 +49,25 @@ for caracter in parrafo:
         if caracter.isdigit():
             contador_numeros += 1
 
-total = contador_vocales + contador_consonantes + contador_otros
+if (termina_punto):
 
-porcentaje = contador_vocales / contador_consonantes * 100
+    total = contador_vocales + contador_consonantes + contador_otros
 
-print("Cantidad de vocales:", contador_vocales)
-print("Cantidad de consonantes:", contador_consonantes)
-print("Cantidad de otros:", contador_otros)
-print("Cantidad de espacios:", contador_espacios)
-print("Cantidad de numeros:", contador_numeros)
-print("Porcentaje de consonantes sobre vocales es de:", porcentaje, "%")
+    porcentaje = contador_vocales / contador_consonantes * 100
 
-if contador_vocales == contador_otros:
-    print("Vocales y otros son iguales")
-else:
-    print("Vocales y otros NO son iguales")
+    print("Cantidad de vocales:", contador_vocales)
+    print("Cantidad de consonantes:", contador_consonantes)
+    print("Cantidad de otros:", contador_otros)
+    print("Cantidad de espacios:", contador_espacios)
+    print("Cantidad de numeros:", contador_numeros)
+    print("Porcentaje de consonantes sobre vocales es de:", porcentaje, "%")
 
-if contiene_z == True:
-    print("Existe al menos una z")
-else:
-    print("No existe una z")
+    if contador_vocales == contador_otros:
+        print("La cantidad de vocales y otros caracteres es igual.")
+    else:
+        print("La cantidad de vocales y otros caracteres no es igual.")
+
+    if (contiene_z):
+        print("El parrafo contiene al menos una letra zeta.")
+    else:
+        print("El parrafo no contiene la letra zeta.")
