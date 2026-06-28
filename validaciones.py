@@ -27,6 +27,19 @@ def validar_numero(mensaje):
         else:
             print("Error: Debe ingresar un número entero válido (solo dígitos del 0 al 9).")
 
+def validar_numero_flotante(mensaje):
+    """
+    ABSTRACCIÓN: Solicita y devuelve un número flotante válido.
+    - Entrada: Un string con el mensaje para el usuario (ej: "Ingrese precio: ").
+    - Salida: Un valor de tipo FLOAT puro. No retorna hasta que la entrada sea válida.
+    """
+    while True:
+        entrada = input(mensaje)
+        try:
+            return float(entrada)
+        except ValueError:
+            print("Error: Debe ingresar un número decimal válido (ej: 3.14 o -2.5).")
+
 
 def validar_caracter_especial(mensaje):
     """
