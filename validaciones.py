@@ -5,27 +5,13 @@ asegurando tipos de datos y formatos específicos sin romper la ejecución del p
 """
 
 def validar_numero(mensaje):
-    """
-    ABSTRACCIÓN: Solicita y devuelve un número entero válido.
-    - Entrada: Un string con el mensaje para el usuario (ej: "Ingrese edad: ").
-    - Salida: Un valor de tipo INT puro. No retorna hasta que la entrada sea válida.
-    """
     while True:
         entrada = input(mensaje)
-        if entrada == "":
-            print("Error: El campo no puede quedar vacío.")
-            continue
-            
-        es_numero_valido = True
-        for caracter in entrada:
-            if not ('0' <= caracter <= '9'):
-                es_numero_valido = False
-                break
-                
-        if es_numero_valido == True:
-            return int(entrada)
-        else:
-            print("Error: Debe ingresar un número entero válido (solo dígitos del 0 al 9).")
+        try:
+            # se aplica float para que no rechace valores como 3.0
+            return int(float(entrada))
+        except ValueError:
+            print("Error: Debe ingresar un número entero válido (1, 10, -1, 0).")
 
 def validar_numero_flotante(mensaje):
     """
