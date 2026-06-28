@@ -4,7 +4,12 @@ Este módulo provee funciones de abstracción para controlar las entradas por te
 asegurando tipos de datos y formatos específicos sin romper la ejecución del programa.
 """
 
-def validar_numero(mensaje):
+def validar_numero(mensaje):    
+    """
+    ABSTRACCIÓN: Solicita y devuelve un número entero válido.
+    - Entrada: Un string con el mensaje para el usuario (ej: "Ingrese edad: ").
+    - Salida: Un valor de tipo INT puro. No retorna hasta que la entrada sea válida.
+    """
     while True:
         entrada = input(mensaje)
         try:
