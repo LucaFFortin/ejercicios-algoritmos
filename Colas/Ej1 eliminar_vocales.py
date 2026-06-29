@@ -8,10 +8,10 @@ from validaciones import validar_string
 cdatos = Cola()
 cola_no_vocales = Cola()
 
-letra = validar_string('Ingrese un caracter ')
+letra = input('Ingrese un caracter o presione enter para salir: ')
 while (letra != ''):
     arribo(cdatos, letra)
-    letra = validar_string('Ingrese un caracter ')
+    letra = input('Ingrese un caracter o presione enter para salir: ')
 
 while (not cola_vacia(cdatos)):
     letra = atencion(cdatos)
