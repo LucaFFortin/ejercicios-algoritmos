@@ -25,12 +25,10 @@ def ingresar_ordenado(cola, elemento_ingresar):
     caux = Cola()    
     ingresado = False
     if (cola_vacia(cola)):
-        print("Entro:", elemento_ingresar)
         arribo(cola, elemento_ingresar)
     else:        
         while (not cola_vacia(cola)):
             elemento_cola = atencion(cola)
-            print("Entro bucle:", elemento_cola)
             if (es_mayor(elemento_cola, elemento_ingresar) and not ingresado):
                 arribo(caux, elemento_ingresar)
                 arribo(caux, elemento_cola)
