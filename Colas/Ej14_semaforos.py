@@ -5,28 +5,32 @@ al menos tres semáforos–.
 b. simular el funcionamiento de los semáforos cargados (cola circular).
 c. debe mostrar por pantalla el cambio de colores y el número del semáforo.
 """
-
-import time
-from tda_colas import Cola, nodoCola, arribo, atencion, mover_al_final, cola_vacia, barrido, en_frente, tamanio
-
+import sys
+from pathlib import Path
 import time
 import os
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from tda_colas import Cola, nodoCola, arribo, atencion, mover_al_final, cola_vacia, barrido, en_frente, tamanio
+from validaciones import validar_string, validar_numero
 
 def limpiar_pantalla():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def mostrar_rotonda(rotonda, activo, color, cambiando):
-    # muestra todos los semáforos, cambia de color el semaforo activo y el siguiente semaforo cuando el activo esta a punto de apagarse
+def mostrar_rotonda(rotonda, activo, color, siguinte):
+    # muestra todos los semaforos, cambia de color el semaforo activo y el siguiente semaforo cuando el activo esta a punto de apagarse
     limpiar_pantalla()
     print("Simulacion de rotonda")
 
     cola_aux = Cola()
     while not cola_vacia(rotonda):
         numero, tiempo = atencion(rotonda)
+        # print(numero, activo, tamanio(rotonda))
         if numero == activo:
             estado = color
         # si el semaforo activo esta a punto de apagarse, se muestra como el semaforo siguiente comienza a iniciar
-        elif (cambiando and (numero == activo + 1 or (activo == 3 and numero == 1))):
+        elif (siguinte is not None and numero == siguinte):
             estado = "🟡 AMARILLO      "
         else:
             estado = "🔴 ROJO          "
@@ -37,32 +41,49 @@ def mostrar_rotonda(rotonda, activo, color, cambiando):
         arribo(rotonda, atencion(cola_aux))
     print()
 
-
 rotonda = Cola()
-arribo(rotonda, (1, 1))
-arribo(rotonda, (2, 1))
-arribo(rotonda, (3, 1))
+def agregar_semaforo():
+    id = tamanio(rotonda) + 1
+    tiempo = validar_numero("Ingrese la cantidad de tiempo en verde del semaforo en segundos: ")
+
+    arribo(rotonda, (id, tiempo))   
 
 TIEMPO_AMARILLO = 2
-vueltas = 2
-total = tamanio(rotonda) * vueltas
+
+while(True):
+    opcion = validar_numero("Opciones: 1 = agregar un semaforo, 0 = Ejecutar la simulacion: ")
+
+    if (opcion == 1):
+        agregar_semaforo()
+    elif (opcion == 0):
+        if (tamanio(rotonda) < 3):
+            print("Debe ingresar como minimo 3 semaforos para poder ejecutar la simulación.")
+        else:
+            break
+    else:
+        print("Opcion invalida.")
+
+tamanio_rotonda = tamanio(rotonda)
+total = tamanio_rotonda
 contador = 0
 
 while contador < total:
     numero, tiempo_verde = en_frente(rotonda)
+    proximo_numero = (numero % tamanio_rotonda) + 1      
+    es_ultimo = contador == total - 1
+
     for t in range(tiempo_verde, 0, -1):
         # previene que en la ultima iteracion de la simulacion se comience a activar el siguiente semaforo
-        if (t <= TIEMPO_AMARILLO and contador > (total - tamanio(rotonda) + 1)):
-            mostrar_rotonda(rotonda, numero, f"🟡 AMARILLO ({t}s) ", False)
-        elif (t <= TIEMPO_AMARILLO):
-            mostrar_rotonda(rotonda, numero, f"🟡 AMARILLO ({t}s) ", True)
+        if (t <= TIEMPO_AMARILLO):
+            siguinte = None if es_ultimo else proximo_numero
+            mostrar_rotonda(rotonda, numero, f"🟡 AMARILLO ({t}s) ", siguinte)
         else:
-            mostrar_rotonda(rotonda, numero, f"🟢 VERDE    ({t}s) ", False)
+            mostrar_rotonda(rotonda, numero, f"🟢 VERDE    ({t}s) ", None)
 
         time.sleep(1)
     # pone todos los semaforos en rojo en la ultima iteracion, finalizando la simulación
     else:
-        mostrar_rotonda(rotonda, numero, f"🔴 ROJO          ", False)
+        mostrar_rotonda(rotonda, numero, f"🔴 ROJO          ", None)
 
     mover_al_final(rotonda)
     contador += 1
