@@ -1,4 +1,10 @@
-from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from pilas import Pila, nodoPila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
+from validaciones import validar_string
 
 def lista_a_pila(lista, pila):
     for i in lista:
@@ -31,7 +37,7 @@ def contar_vocales(pila):
     return [cont, vocales]
 
 # main
-entrada = list(input("Ingrese el texto a analizar: "))
+entrada = list(validar_string("Ingrese el texto a analizar: "))
 pila = Pila()
 lista_a_pila(entrada, pila)
 

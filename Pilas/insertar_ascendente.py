@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from validaciones import validar_string
 from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
 
 def insertar_ascendente(pila, dato):
@@ -29,10 +35,14 @@ pila = Pila()
 
 # main
 while (True):
+    # mantenemos input por la logica de romper el ciclo
     opcion = input("Ingrese un numero o S para salir: ").lower()
     if (opcion == "s"):
         break
-    opcion = int(opcion)
-    insertar_ascendente(pila, opcion)
+    try:
+        opcion = int(opcion)
+        insertar_ascendente(pila, opcion)
+    except:
+        print("Debe ingresar un numero valido.")
 
 barrido(pila)

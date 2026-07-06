@@ -1,4 +1,10 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
 from pilas import Pila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
+from validaciones import validar_string
 import random
 
 mazo = Pila()
@@ -57,7 +63,7 @@ def ordenar_cartas_palo (pila, palo):
     barrido(pila)
 
 
-ordenar = input("que pila quiere ordenar: oro, basto, espada, copa: ").lower()
+ordenar = validar_string("que pila quiere ordenar: oro, basto, espada, copa: ").lower()
 if ordenar == "oro":
     ordenar_cartas_palo(pila_oro, ordenar)
 elif ordenar == "basto":

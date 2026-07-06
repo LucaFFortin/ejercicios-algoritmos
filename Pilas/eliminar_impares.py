@@ -17,6 +17,7 @@ def eliminar_impares(pila):
 print("Ingrese los datos de la Pila:")
 pila = Pila()
 while(True):
+    # se mantiene input porque si se ingresa S se debe romper la ejecucion
     nodo = input("Ingrese el dato que quiere guardar en la pila: S para salir: ")
     if (nodo == "S"): break
     try:

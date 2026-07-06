@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from validaciones import validar_string
 from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
 
 """
@@ -155,13 +161,13 @@ def mostrar_trajes(pila, pelicula_mostrar):
 # main
 pila = Pila()
 while(True):
-    entrada = input(string_entrada)
+    entrada = validar_string(string_entrada)
 
     if (entrada == "0"): break
     elif (entrada == "1"):
-        pelicula = input("Ingrese el nombre de la pelicula: ")
-        modelo = input("Ingrese el modelo utilizado en la pelicula: ")
-        estado = input("Ingrese el estado del modelo (debe estar dentro de estas opciones [dañado, impecable, destruido]): ")
+        pelicula = validar_string("Ingrese el nombre de la pelicula: ")
+        modelo = validar_string("Ingrese el modelo utilizado en la pelicula: ")
+        estado = validar_string("Ingrese el estado del modelo (debe estar dentro de estas opciones [dañado, impecable, destruido]): ")
 
         if (estado.lower() not in estados_trajes):
             print("El estado del traje no esta en las opciones listadas.")

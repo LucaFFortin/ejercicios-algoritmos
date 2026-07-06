@@ -109,6 +109,7 @@ def determinar_variaciones(pila):
 
 # main
 pila = Pila()
+# las funciones se encargan de la validacion de los datos
 while(True):
     dia = input("Ingrese el numero del dia de abril (1 a 31): ")
     temperatura = input("Ingrese la temperatura en forma numerica de ese dia: ") 

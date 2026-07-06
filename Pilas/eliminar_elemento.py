@@ -1,4 +1,11 @@
-from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from validaciones import validar_numero
+from pilas import Pila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
+
 
 def borrar_elemento(pila, posicion):
     pos = 0
@@ -26,18 +33,15 @@ def borrar_elemento(pila, posicion):
 print("Ingrese los datos de la Pila:")
 pila = Pila()
 while(True):
+    # se mantiene input porque queremos que ingrese cualquier dato como string
     nodo = input("Ingrese el dato que quiere guardar en la pila: S para salir: ")
     if (nodo == "S"): break
     apilar(pila, nodo)
 
 invalida = False
-try:
-    entrada = int(input("Ingrese la posicion del numero a eliminar: "))
-    if (entrada < 0 or entrada > tamanio(pila)): 
-        print("La entrada debe ser un numero mayor a cero y menor al tamaño de la pila.")
-        invalida = True
-except:
-    print("La entrada debe ser un numero valido.")
+entrada = validar_numero("Ingrese la posicion del numero a eliminar: ")
+if (entrada < 0 or entrada > tamanio(pila)): 
+    print("La entrada debe ser un numero mayor a cero y menor al tamaño de la pila.")
     invalida = True
 
 if (not invalida):

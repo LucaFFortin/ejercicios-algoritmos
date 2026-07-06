@@ -19,11 +19,15 @@ contador_espacios = 0
 contador_numeros = 0
 contiene_z = False
 
+# se mantiene input porque el parrafo puede contener numeros.
 parrafo = input("Ingrese un parrafo terminado en punto: ")
 termina_punto = False
 for caracter in parrafo:
-    if (parrafo[-1] != "."):
-        print("El parrafo no termina en punto, se cancela la ejecucion del programa.")
+    if (len(parrafo) <= 0):
+        # lo usamos
+        termina_punto = False 
+    if (len(parrafo) <= 0 or parrafo[-1] != "."):
+        print("El parrafo no termina en punto o su longitud es menor a 0, se cancela la ejecucion del programa.")
         break
     else:
         termina_punto = True

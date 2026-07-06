@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from validaciones import validar_string
 from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
 
 def lista_a_pila(lista, pila):
@@ -17,5 +23,5 @@ def ver_palabra_inversa(cadena):
     return "".join(lista)
 
 # main
-entrada = input("Ingrese la palabra a invertir: ")
+entrada = validar_string("Ingrese la palabra a invertir: ")
 print(f"La palabra invertida es: {ver_palabra_inversa(entrada)}")

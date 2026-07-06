@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from validaciones import validar_string, validar_numero
 from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
 
 def insertar_atenea(pila, pos):
@@ -29,11 +35,11 @@ print("Ingrese los datos de la Pila:")
 pila = Pila()
 while(True):
     nodo = nodoPila()
-    nodo.info = input("Ingrese el dato que quiere guardar en la pila: S para salir: ")
+    nodo.info = validar_string("Ingrese el dato que quiere guardar en la pila: S para salir: ")
     if (nodo.info == "S"): break
     apilar(pila, nodo)
 
-entrada = int(input("Ingrese la posicion a insertar a Atenea: "))
+entrada = validar_numero("Ingrese la posicion a insertar a Atenea: ")
 print("Pila sin atenea")
 barrido(pila)
 

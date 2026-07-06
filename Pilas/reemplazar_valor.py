@@ -33,6 +33,7 @@ def existe_valor(pila, valor):
 # main
 print("Ingrese los datos de la Pila:")
 pila = Pila()
+# se mantiene input porque el dato puede ser un string cualquiera
 while(True):
     nodo = input("Ingrese el dato que quiere guardar en la pila: S para salir: ")
     if (nodo == "S"): break

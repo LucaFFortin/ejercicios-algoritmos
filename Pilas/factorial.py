@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from validaciones import validar_numero
 from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia
 
 def factorial_pila(num):
@@ -15,7 +21,7 @@ def factorial_pila(num):
 
 # main
 try:
-    entrada = int(input("Ingrese el numero a factorizar: "))
+    entrada = validar_numero("Ingrese el numero a factorizar: ")
     entrada_factorizada = factorial_pila(entrada)
     print(f"El numero {entrada} factorizado es: {entrada_factorizada}")
 except:

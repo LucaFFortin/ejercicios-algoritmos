@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from validaciones import validar_string
 from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
 
 def lista_a_pila(lista, pila):
@@ -27,14 +33,11 @@ def es_palindromo(cadena):
     return palindromo
 
 # main
-entrada = input("Ingrese la palabra a verificar: ")
-if (entrada == ""):
-    print("La entrada esta vacia, no se puede realizar el proceso.")
+entrada = validar_string("Ingrese la palabra a verificar: ")
+resultado = es_palindromo(entrada)
+if (resultado):
+    print(f"{entrada} es palindromo")
 else:
-    resultado = es_palindromo(entrada)
-    if (resultado):
-        print(f"{entrada} es palindromo")
-    else:
-        print(f"{entrada} no es palindromo")
+    print(f"{entrada} no es palindromo")
 
 

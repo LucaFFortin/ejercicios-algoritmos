@@ -12,6 +12,7 @@ def invertir_pila(pila):
 print("Ingrese los datos de la Pila:")
 pila = Pila()
 while(True):
+    # se mantiene input porque se quiere poder guardar cualquier dato.
     nodo = input("Ingrese el dato que quiere guardar en la pila: S para salir: ")
     if (nodo == "S"): break
     apilar(pila, nodo)

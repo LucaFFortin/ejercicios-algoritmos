@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from validaciones import validar_string
 from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
 
 def encontrar_personajes(pila):
@@ -22,7 +28,7 @@ def encontrar_personajes(pila):
 print("Ingrese personajes a la Pila:")
 pila = Pila()
 while(True):
-    nodo  = input("Ingrese el personaje que quiere guardar en la pila: S para salir: ")
+    nodo = validar_string("Ingrese el personaje que quiere guardar en la pila: S para salir: ")
     if (nodo  == "S"): break
     apilar(pila, nodo)
 
