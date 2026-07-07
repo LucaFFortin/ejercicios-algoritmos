@@ -10,11 +10,13 @@ from validaciones import validar_string
 cola = Cola()
 pila = Pila()
 
+# ingreso de datos
 letra = validar_string('Ingrese un caracter, para salir presione enter sin ingresar caracteres: ')
 while (letra != ''):
     arribo(cola, letra)
     letra = validar_string('Ingrese un caracter, para salir presione enter sin ingresar caracteres: ')
 
+# se imprime la cola antes y despues de invertirla
 print("Cola antes de invertirla:")
 barrido(cola)
 

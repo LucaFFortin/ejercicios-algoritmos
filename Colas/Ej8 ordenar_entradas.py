@@ -17,10 +17,14 @@ def transformar_string(s):
     partes = re.split(r'(\d+)', s)
     return [int(p) if p.isdigit() else p.lower() for p in partes]
 
+# retorna True si un string es mayor a otro, ambos parseados por la funcion transformar_string
 def es_mayor(actual, a_ingresar):
     return transformar_string(actual) > transformar_string(a_ingresar)
 
-
+# ingresa los elementos de manera ordenada.
+# saca elementos de la cola y los guarda en una auxiliar hasta que encuentra un elemento con indice menor, entonces lo ingresa
+# si no encuentra un elemento de indice menor, este es el menor asi que lo ingresa primero
+# despues de cada insercion se imprime la cola
 def ingresar_ordenado(cola, elemento_ingresar):
     caux = Cola()    
     ingresado = False
@@ -48,6 +52,7 @@ def ingresar_ordenado(cola, elemento_ingresar):
     print("COLA: ")
     barrido(cola)
 
+# entrada del usuario, se piden datos y se ingresan ordenados por la funcion
 while (True):
     numero = input("Ingrese un elemento para la cola: ")
     ingresar_ordenado(cola, numero)

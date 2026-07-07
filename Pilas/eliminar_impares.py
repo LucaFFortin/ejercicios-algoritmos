@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from validaciones import validar_numero, validar_string
 from pilas import nodoPila, Pila, apilar, desapilar, pila_vacia, barrido
 
 def eliminar_impares(pila):
@@ -17,9 +23,10 @@ def eliminar_impares(pila):
 print("Ingrese los datos de la Pila:")
 pila = Pila()
 while(True):
-    # se mantiene input porque si se ingresa S se debe romper la ejecucion
-    nodo = input("Ingrese el dato que quiere guardar en la pila: S para salir: ")
-    if (nodo == "S"): break
+    # se mantiene input porque
+    nodo = input("Ingrese el dato que quiere guardar en la pila: ")
+    salir = validar_string("Si desea salir ingrese la letra S, sino ingrese otra cosa: ")
+    if (salir == "S"): break
     try:
         nodo = int(nodo)
         apilar(pila, nodo)

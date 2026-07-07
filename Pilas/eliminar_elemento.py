@@ -3,7 +3,7 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from validaciones import validar_numero
+from validaciones import validar_numero, validar_string
 from pilas import Pila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
 
 
@@ -34,9 +34,10 @@ print("Ingrese los datos de la Pila:")
 pila = Pila()
 while(True):
     # se mantiene input porque queremos que ingrese cualquier dato como string
-    nodo = input("Ingrese el dato que quiere guardar en la pila: S para salir: ")
-    if (nodo == "S"): break
+    nodo = input("Ingrese el dato que quiere guardar en la pila:")
     apilar(pila, nodo)
+    salir = validar_string("Si desea salir ingrese la letra S, sino ingrese otra cosa: ")
+    if (salir == "S"): break
 
 invalida = False
 entrada = validar_numero("Ingrese la posicion del numero a eliminar: ")

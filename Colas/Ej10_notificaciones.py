@@ -23,6 +23,8 @@ notificacion: {
 }
 """
 
+# funcion que ingresa notificaciones de manera manual
+# ingresamos la notificacion en una cola y la mostramos por pantalla
 def ingresar_notificacion(notificaciones):
     app = validar_string("Ingrese la aplicacion de donde proviene el mensaje: ")
     mensaje = validar_string("Ingrese el mensaje de la notificacion: ")
@@ -39,6 +41,7 @@ def ingresar_notificacion(notificaciones):
     arribo(notificaciones, notificacion)
     barrido(notificaciones)
 
+# funcion que elimina de la cola todas las notificaciones con app = facebook
 def eliminar_facebook(notificaciones):
     temp = Cola()
     while (not cola_vacia(notificaciones)):
@@ -50,7 +53,7 @@ def eliminar_facebook(notificaciones):
         notificacion = atencion(temp)
         arribo(notificaciones, notificacion)
 
-
+# funcion que imprime todas las notificaciones con app = twitter
 def imprimir_twitter(notificaciones):
     for i in range(tamanio(notificaciones)):
         notificacion = en_frente(notificaciones)
@@ -58,6 +61,7 @@ def imprimir_twitter(notificaciones):
             print(f"Notificacion de Twitter a la hora: {notificacion["recieved"]}, con el mensaje: \"{notificacion["message"]}\".")
         mover_al_final(notificaciones)
 
+# funcion que guarda las notificaciones que se ingresaron entre las 11:43 y las 15:57
 def guardar_temporales(notificaciones):
     temp = Cola()
     for i in range(tamanio(notificaciones)):
@@ -68,6 +72,7 @@ def guardar_temporales(notificaciones):
         mover_al_final(notificaciones)
     print(f"La cantidad de notificaciones recividas entre las 11:43 y las 15:57 son: {tamanio(temp)}")
 
+# entrada de datos del usuario
 notificaciones = Cola()
 while (True):
 

@@ -37,28 +37,39 @@ def esta_ordenada(cola):
 # Recibe las 2 colas a unificar
 # Elige el numero mas pequeño entre los frentes de ambas colas y lo ingresa a la cola unificada
 # Cuando una cola se vacia, se ingresan el resto de elementos de la otra cola
+caux1 = Cola()
+caux2 = Cola()
+cola_final = Cola()
 def unir_colas_ordenado(cola1, cola2):
-    cola_final = Cola()
     while(not cola_vacia(cola1) or not cola_vacia(cola2)):
+        # si la cola1 esta vacia, se ingresan el resto de los datos de la cola2
         if (cola_vacia(cola1)):
             while(not cola_vacia(cola2)):
                 numero = atencion(cola2)
                 arribo(cola_final, numero)
+                arribo(caux1, numero)
                 
+        # si la cola2 esta vacia, se ingresan el resto de los datos de la cola1
         elif (cola_vacia(cola2)):
             while(not cola_vacia(cola1)):
                 numero = atencion(cola1)
                 arribo(cola_final, numero)
+                arribo(caux2, numero)
+        # si ambas colas tienen datos, calculamos cual de estos tiene el dato menor
         else:
             frente_uno = en_frente(cola1)
             frente_dos = en_frente(cola2)
 
+            # si el numero en frente de la cola 1 es mayor al de la cola 2, ingresamos en la cola final el numero de la cola 2
             if (frente_uno > frente_dos):
                 numero = atencion(cola2)
                 arribo(cola_final, numero)
+                arribo(caux2, numero)
+            # sino ingresamos el numero de la cola 1
             else:
                 numero = atencion(cola1)
                 arribo(cola_final, numero)
+                arribo(caux1, numero)
 
     print("Barrido cola final: ")
     barrido(cola_final)
@@ -86,6 +97,16 @@ while (True):
 if (cola_vacia(cola1) and cola_vacia(cola2)): print("Las colas estan vacias, no se realizo ninguna operación.")
 # se valida que ambas colas esten ordenadas, paso necesario por requisito de la ejecucion del algoritmo.
 elif (not esta_ordenada(cola1) or not esta_ordenada(cola2)): print("Las colas no estan ordenadas, no se realizo ninguna operación.")
+# por ultimo, si se cumplen las condiciones, unificamos las colas en 1 sola
 else: unir_colas_ordenado(cola1, cola2)
+
+opcion = validar_string("Desea ver las colas de entrada y salida? SI = ver, NO = no ver: ")
+if (opcion.lower() == "si"):
+    print("Primera cola de numeros: ")
+    barrido(caux1)
+    print("Segunda cola de numeros: ")
+    barrido(caux2)
+    print("Cola final:")
+    barrido(cola_final)
 
     
