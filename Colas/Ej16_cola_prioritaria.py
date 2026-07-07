@@ -34,6 +34,8 @@ def imprimir_documento():
     elif (tamanio(gerentes) >= 1):
         documento = atencion(gerentes)
         print(documento)
+    else:
+        print("No hay documentos en la cola de impresión.")
     
 def simular_situacion():
     # 1er paso
