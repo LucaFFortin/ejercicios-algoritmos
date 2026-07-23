@@ -15,6 +15,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 from tda_colas import Cola, nodoCola, arribo, atencion, mover_al_final, cola_vacia, barrido, en_frente, tamanio
 from validaciones import validar_string, validar_numero
 
+# funcion auxiliar para limpiar la pantalla de la consola
 def limpiar_pantalla():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -26,7 +27,6 @@ def mostrar_rotonda(rotonda, activo, color, siguinte):
     cola_aux = Cola()
     while not cola_vacia(rotonda):
         numero, tiempo = atencion(rotonda)
-        # print(numero, activo, tamanio(rotonda))
         if numero == activo:
             estado = color
         # si el semaforo activo esta a punto de apagarse, se muestra como el semaforo siguiente comienza a iniciar
@@ -42,6 +42,8 @@ def mostrar_rotonda(rotonda, activo, color, siguinte):
     print()
 
 rotonda = Cola()
+# funcion para agregar un semaforo a la rotonda, 
+# se pide una cantidad de tiempo que estara activo y se añade a la cola de la rotonda
 def agregar_semaforo():
     id = tamanio(rotonda) + 1
     tiempo = validar_numero("Ingrese la cantidad de tiempo en verde del semaforo en segundos: ")
@@ -50,6 +52,8 @@ def agregar_semaforo():
 
 TIEMPO_AMARILLO = 2
 
+# ingreso de semafotos, si ingresa 1 se pide que ingrese la cantidad de tiempo que el semaforo estara en verde
+# si ingresa 0 se rompe el bucle y se inicia la simulacion
 while(True):
     opcion = validar_numero("Opciones: 1 = agregar un semaforo, 0 = Ejecutar la simulacion: ")
 
@@ -62,16 +66,19 @@ while(True):
             break
     else:
         print("Opcion invalida.")
-
+        
+# pedimos que ingrese la cantidad de vueltas a simular
+vueltas = validar_numero("Ingrese la cantidad de vueltas a simular: ")
 tamanio_rotonda = tamanio(rotonda)
-total = tamanio_rotonda
+total = tamanio_rotonda * vueltas
 contador = 0
 
+# ejecutamos la simulacion la cantidad de vueltas ingresadas
 while contador < total:
     numero, tiempo_verde = en_frente(rotonda)
     proximo_numero = (numero % tamanio_rotonda) + 1      
     es_ultimo = contador == total - 1
-
+    # actualizamos el bucle 1 vez por segundo mientras el semaforo actual este activo.
     for t in range(tiempo_verde, 0, -1):
         # previene que en la ultima iteracion de la simulacion se comience a activar el siguiente semaforo
         if (t <= TIEMPO_AMARILLO):

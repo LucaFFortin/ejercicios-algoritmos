@@ -171,8 +171,7 @@ def mostrar_estado(cola_d, cola_a, hora_actual):
 
     print("╚══════════════════════════════════════════════════╝\n")
 
-# ─── Uso de pista ─────────────────────────────────────────────────────────────
-
+# Uso de pista 
 def usar_pista(vuelo, operacion):
     """Ocupa la pista el tiempo correspondiente con countdown."""
     segundos = TIEMPOS_PISTA[vuelo["tipo"]][operacion]
@@ -186,8 +185,7 @@ def usar_pista(vuelo, operacion):
 
     print("     Pista libre.          ")
 
-# ─── Atención de vuelos ───────────────────────────────────────────────────────
-
+# Atención de vuelos
 def atender_aterrizaje(cola_aterrizajes):
     vuelo = atencion(cola_aterrizajes)
     usar_pista(vuelo, "aterrizaje")
@@ -227,8 +225,7 @@ def atender_despegue(cola_despegues):
         arribo(cola_despegues, vuelo)         # va al final → ya es el más tardío
         print(f"     Reprogramado para las {nueva.strftime('%H:%M')}.")
 
-# ─── Menú de carga posterior ──────────────────────────────────────────────────
-
+# Menú de carga posterior 
 def menu_agregar(cola_despegues, cola_aterrizajes):
     while True:
         print("\n  ¿Agregar vuelos?  1 = Despegue  2 = Aterrizaje  0 = Continuar")
@@ -244,8 +241,7 @@ def menu_agregar(cola_despegues, cola_aterrizajes):
         elif op == 0:
             break
 
-# ─── Lógica de prioridad (requisito e) ───────────────────────────────────────
-
+# Logica de prioridad
 def es_hora_despegue(cola_despegues, hora_actual):
     """True si la hora actual >= hora de salida del primer vuelo en cola."""
     if cola_vacia(cola_despegues):
@@ -253,7 +249,6 @@ def es_hora_despegue(cola_despegues, hora_actual):
     return hora_actual >= en_frente(cola_despegues)["hora_salida"]
 
 # MAIN
-
 cola_despegues   = Cola()
 cola_aterrizajes = Cola()
 

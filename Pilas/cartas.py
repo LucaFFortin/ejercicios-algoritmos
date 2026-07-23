@@ -13,6 +13,7 @@ pila_basto = Pila()
 pila_espada = Pila()
 pila_copa = Pila()
 
+# genera una mazo con 48 cartas mezcladas
 while tamanio(mazo) < 48:
 
     numero = random.randint(1, 12)
@@ -35,6 +36,7 @@ while tamanio(mazo) < 48:
 print("Cartas en el mazo:")
 barrido(mazo)
 
+# divide las cartas segun el palo
 while pila_vacia(mazo) == False:
     carta = desapilar(mazo)
 
@@ -47,6 +49,7 @@ while pila_vacia(mazo) == False:
     else:
         apilar(pila_copa, carta)
 
+# ordena un palo del mazo de cartas ingresado por argumentos
 def ordenar_cartas_palo (pila, palo):
     pila_auxiliar = Pila()
     while pila_vacia(pila) == False:
@@ -62,7 +65,7 @@ def ordenar_cartas_palo (pila, palo):
 
     barrido(pila)
 
-
+# se pregunta que palo ordenar, se ingresa y se muestra ordenado o si el palo no se reconoce, se imprime por pantalla
 ordenar = validar_string("que pila quiere ordenar: oro, basto, espada, copa: ").lower()
 if ordenar == "oro":
     ordenar_cartas_palo(pila_oro, ordenar)

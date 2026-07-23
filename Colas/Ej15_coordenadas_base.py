@@ -26,12 +26,11 @@ from validaciones import validar_numero_flotante, validar_string, validar_numero
 # latitud y longitud de la posicion actual
 lat_uno = None
 lon_uno = None
-# colas donde ingresaran: bases ingresadas por el usuario, las bases con su distancia hacia el punto actual y las bases cercanas (3)
+# colas donde ingresaran: bases ingresadas por el usuario, 
+# las bases con su distancia hacia el punto actual y las bases cercanas (3)
 bases = Cola()
 distancia_bases = Cola()
 bases_cercanas = Cola()
-
-# no se estan modificando ningun de las 2 siguientes listas
 
 # valida que la posicion actual este dentro del rango de latitud y longitud conocida
 # si es valido, devuelve la latitud y longitud en forma de radianes
@@ -42,6 +41,8 @@ def validar_posicion (lat, lon):
         print("La posicion debe estar los siguientes rangos: latitud: de -90° a 90°, longitud: de -180° a 180°.")
         return None, None
 
+# funcion que ingresa nuevas bases a la cola de bases
+# solicitamos que ingresen el nombre, numero de flota, latitud y longitud validas
 def ingresar_base():
     nombre = validar_string("Ingrese el nombre de la base: ")
     numero_flota = validar_numero("Ingrese el numero de flota: ")

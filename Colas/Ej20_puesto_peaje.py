@@ -30,6 +30,7 @@ tarifas = {
     "colectivo": 64
 }
 
+# tipos de vehiculos atendidos en la primera cabina y su total
 datos_pc = {
     "automovil": 0, 
     "camioneta": 0, 
@@ -38,6 +39,7 @@ datos_pc = {
     "total": 0
 }
 
+# tipos de vehiculos atendidos en la segundo cabina y su total
 datos_sc = {
     "automovil": 0, 
     "camioneta": 0, 
@@ -46,6 +48,7 @@ datos_sc = {
     "total": 0
 }
 
+# tipos de vehiculos atendidos en la tercera cabina y su total
 datos_tc = {
     "automovil": 0, 
     "camioneta": 0, 
@@ -54,6 +57,7 @@ datos_tc = {
     "total": 0
 }
 
+# genera aleatoreamente 30 vehiculos que ingresan de manera aleatorea a las cabinas
 for i in range(30):
     cabina = random.randint(1, 3)
     cliente = random.choice(["automovil", "camioneta", "camion", "colectivo"])
@@ -64,6 +68,7 @@ for i in range(30):
     elif (cabina == 3):
         arribo(tercera_cabina, cliente)
 
+# calculamos la cantidad de vehiculos atendidos por tipo y su total para cada cabina
 while(True):
     if (not cola_vacia(primera_cabina)):
         cliente = atencion(primera_cabina)
@@ -80,6 +85,7 @@ while(True):
     else:
         break
 
+# imprimimos por pantalla cual cabina tuvo una mayor cantidad de 
 if (datos_pc["total"] > datos_sc["total"] and datos_pc["total"] > datos_tc["total"]):
     print("La cabina que mas ingresos tuvo fue la primera cabina.")
 elif (datos_sc["total"] > datos_pc["total"] and datos_sc["total"] > datos_tc["total"]):
@@ -87,6 +93,7 @@ elif (datos_sc["total"] > datos_pc["total"] and datos_sc["total"] > datos_tc["to
 elif (datos_tc["total"] > datos_sc["total"] and datos_tc["total"] > datos_pc["total"]):
     print("La cabina que mas ingresos tuvo fue la tercera cabina.")
 
+# mostramos la cantidad de vehiculos atendidos por cabina
 print(f"En la primera cabina se atendieron: {datos_pc['automovil']} automoviles, {datos_pc['camion']} camiones, {datos_pc["camioneta"]} camionetas y {datos_pc['colectivo']} colectivos.")
 print(f"En la segunda cabina se atendieron: {datos_sc['automovil']} automoviles, {datos_sc['camion']} camiones, {datos_sc["camioneta"]} camionetas y {datos_sc['colectivo']} colectivos.")
 print(f"En la tercera cabina se atendieron: {datos_tc['automovil']} automoviles, {datos_tc['camion']} camiones, {datos_tc["camioneta"]} camionetas y {datos_tc['colectivo']} colectivos.")

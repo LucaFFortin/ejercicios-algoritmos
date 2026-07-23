@@ -6,12 +6,14 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 from pilas import Pila, nodoPila, apilar, desapilar, pila_vacia, en_cima, tamanio, barrido
 from validaciones import validar_string
 
+# funcion para extraer los elementos de una lista y apilarlos a una pila
 def lista_a_pila(lista, pila):
     for i in lista:
         nodo = nodoPila()
         nodo.info = i
         apilar(pila, nodo)
 
+# cuenta las vocales de una pila
 def contar_vocales(pila):
     cont = 0
     vocales = {
