@@ -11,19 +11,30 @@ e. imprima los dos primeros documentos de la cola.
 f. cargue dos documentos de empleados y uno de gerente.
 g. imprima todos los documentos de la cola de impresión.
 """
-from tda_colas import Cola, nodoCola, arribo, atencion, mover_al_final, cola_vacia, barrido, en_frente, tamanio
+import math
+import sys
+from pathlib import Path
 
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from tda_colas import Cola, nodoCola, arribo, atencion, mover_al_final, cola_vacia, barrido, en_frente, tamanio
+from validaciones import validar_numero_flotante, validar_string, validar_numero
+
+# creamos 3 colas especificas para cada tipo de trabajo
 empleados = Cola()
 staff = Cola()
 gerentes = Cola()
 documentos_en_cola = 0
 
+# ingresamos el documento en la cola correspondiente al cargo ingresado o indicamos que el cargo es incorrecto
 def ingresar_documento(cargo, documento):
     if (cargo.lower() == "empleado"): arribo(empleados, documento)
     elif (cargo.lower() == "staff"): arribo(staff, documento)
     elif (cargo.lower() == "gerente"): arribo(gerentes, documento)
     else: print("Cargo no reconocido, debe ingresar una de las siguientes opciones: 'Empleados', 'Staff' o 'Gerente'.")
 
+# imprimimos el documeno priorizando empleados primero, staff segundo y gerentes tercero
+# si no hay le indicamos a traves de un mensaje que no es posible imprimir
 def imprimir_documento():
     if (tamanio(empleados) >= 1):
         documento = atencion(empleados)
@@ -37,6 +48,7 @@ def imprimir_documento():
     else:
         print("No hay documentos en la cola de impresión.")
     
+# simulamos la situacion planteada en el enunciado
 def simular_situacion():
     # 1er paso
     ingresar_documento("empleado", "empleado 1")
@@ -66,4 +78,19 @@ def simular_situacion():
         imprimir_documento()
 
 
-simular_situacion()
+# punto de acceso a la aplicacion
+opcion = validar_string("Desea ingresar documentos? 1 para ingresar, 2 para imprimir, 3 para ejecutar simulacion, 0 para salir: ")
+while (True):
+    if (opcion == "1"):
+        cargo = validar_string("ingrese el cargo que necesita el documento [empleado, staff, gerente]: ")
+        documento = validar_string("Ingrese el contenido del documento a imprimir")
+        ingresar_documento(cargo, documento)
+    elif (opcion == "2"):
+        imprimir_documento()
+    elif(opcion == "3"):
+        simular_situacion()
+    elif (opcion == "0"):
+        break
+    else:
+        print("Opcion no reconocida.")
+    opcion = validar_string("Desea ingresar mas documentos? 1 para ingresar, 2 para imprimir, 3 para ejecutar simulacion, 0 para salir: ")

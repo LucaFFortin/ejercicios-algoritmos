@@ -6,6 +6,12 @@ c. determinar además si existen los caracteres “?” y “#”.
 """
 import random
 import math
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from validaciones import validar_string
 from tda_colas import Cola, nodoCola, arribo, atencion, mover_al_final, cola_vacia, barrido, en_frente, tamanio
 
 # Letras minúsculas del alfabeto oficial 
@@ -61,8 +67,10 @@ char_resto = Cola()
 digitos = Cola()
 existe_simbolo = False
 contador_letras = 0
+todos = Cola()
 
-while (tamanio(char_resto) < 50000):
+# generamos los caracteres aleatoreamente y los almacenamos en cada cola correspondiente
+while (tamanio(todos) < 50000):
     caracter = random.choice(TODOS_LOS_CARACTERES)
     if (caracter in ['?', '#']):
         existe_simbolo = True
@@ -72,6 +80,23 @@ while (tamanio(char_resto) < 50000):
         if (caracter in LETRAS_TOTAL):
             contador_letras += 1
         arribo(char_resto, caracter)
+    arribo(todos, caracter)
 
-barrido(char_resto)
-print(tamanio(char_resto))
+# imprimimos la cantidad de datos en la cola de digitos y letras, y si existen en la cola los simbolos especificados
+print(f"Cantidad de caracteres que son letras: {contador_letras}")
+print(f"Cantidad de caracteres que son digitos: {tamanio(digitos)}")
+if (existe_simbolo):
+    print("Hay simbolos # y ? en la cola de caracteres.")
+else: 
+    print("No hay simbolos de # y ? en la cola.")
+
+# preguntamos si quiere imprimir todas las colas de datos
+opcion = validar_string("Desea imprimir las colas completas? SI para imprimir, NO para salir: ")
+if (opcion.lower() == "si"):
+    print("Todos los caracteres: ")
+    barrido(todos)
+    print("Cola de digitos: ")
+    barrido(digitos)
+    print("Caracteres sin contar digitos")
+    barrido(char_resto)
+    
