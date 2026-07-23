@@ -11,7 +11,10 @@ cola_no_vocales = Cola()
 # ingreso de datos
 letra = input('Ingrese un caracter o presione enter para salir: ')
 while (letra != ''):
-    arribo(cdatos, letra)
+    if (len(letra) > 1):
+        print("Solo debe ingresar una sola letra.")
+    else:
+        arribo(cdatos, letra)
     letra = input('Ingrese un caracter o presione enter para salir: ')
 
 # se sacan todos los datos de la cola y se guardan en una cola auxiliar

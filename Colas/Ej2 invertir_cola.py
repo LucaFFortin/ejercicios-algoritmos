@@ -11,10 +11,13 @@ cola = Cola()
 pila = Pila()
 
 # ingreso de datos
-letra = validar_string('Ingrese un caracter, para salir presione enter sin ingresar caracteres: ')
+letra = input('Ingrese un caracter, para salir presione enter sin ingresar caracteres: ')
 while (letra != ''):
-    arribo(cola, letra)
-    letra = validar_string('Ingrese un caracter, para salir presione enter sin ingresar caracteres: ')
+    if (len(letra) > 1):
+        print("Solo debe ingresar una sola letra.")
+    else:
+        arribo(cola, letra)
+    letra = input('Ingrese un caracter, para salir presione enter sin ingresar caracteres: ')
 
 # se imprime la cola antes y despues de invertirla
 print("Cola antes de invertirla:")
