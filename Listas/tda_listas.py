@@ -13,7 +13,7 @@ class Lista(object):
         
 def insertar(lista, dato):
     """Insertar el dato pasado en la lista."""
-    nodo = nodoLista
+    nodo = nodoLista()
     nodo.info = dato
     if (lista.inicio is None) or (lista.inicio.info > dato):
         nodo.sig = lista.inicio
