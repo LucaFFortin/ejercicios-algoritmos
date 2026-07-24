@@ -18,6 +18,15 @@ def validar_numero(mensaje):
         except ValueError:
             print("Error: Debe ingresar un número entero válido (1, 10, -1, 0).")
 
+def validar_caracter(mensaje):
+    while True:
+        entrada = input(mensaje)
+        if (len(entrada) == 1):
+            return entrada
+        else:
+            print("La longitud del caracter debe ser exactamente de 1.")
+
+
 def validar_numero_flotante(mensaje):
     """
     ABSTRACCIÓN: Solicita y devuelve un número flotante válido.
