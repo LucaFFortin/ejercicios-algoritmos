@@ -11,11 +11,11 @@ f. indicar cuántas tareas le quedan pendientes a una determinada persona, indic
 """
 import sys
 from pathlib import Path
-import datetime
+import datetime, time
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from validaciones import validar_string, validar_numero_flotante, validar_numero
+from validaciones import validar_string, validar_numero_flotante, validar_numero, validar_fecha
 from utils import limpiar
 from tda_listas import insertar, lista_vacia, eliminar, barrido, tamanio, buscar, criterio, buscar_criterio, insertar_criterio, eliminar_criterio, Lista, nodoLista
 
@@ -41,7 +41,7 @@ while True:
     7 - Mostrar tareas realizadas a tiempo y fuera de tiempo
     8 - Mostrar tareas pendientes de una persona
     0 - Salir
-    Ingrese una opcion: """)
+Ingrese una opcion: """)
 
     limpiar()
 
@@ -49,26 +49,45 @@ while True:
     if (opcion == 1):
         nombre = validar_string("Ingrese el nombre del empleado: ")
         id = validar_numero("Ingrese el identificador del empleado: ")
+
+        while (buscar_por_indice(empleados, id, 1) is not None):
+            print("El ID ingresado ya fue asignado a otro empleado.")
+            id = validar_numero("Ingrese el identificador del empleado: ")
+            
         insertar(empleados, [nombre, id])
     # ingreso de tarea
     elif (opcion == 2):
         costo = validar_numero_flotante("Ingrese el costo de la tarea: ")
+        while (costo <= 0):
+            print("El costo debe ser un numero positivo.")
+            costo = validar_numero_flotante("Ingrese el costo de la tarea: ")
+
         tiempo_ejecucion = validar_numero("Ingrese el tiempo de ejecucion de la tarea (en horas): ")
-        fecha_inicio = validar_string("Ingrese la fecha de inicio de la tarea (DD-MM-YYYY): ")
-        fecha_inicio = datetime.datetime.strptime(fecha_inicio, "%d-%m-%Y").date()
-        fecha_estimada = validar_string("Ingrese la fecha estimada de finalizacion de la tarea (DD-MM-YYYY): ")
-        fecha_estimada = datetime.datetime.strptime(fecha_estimada, "%d-%m-%Y").date()
-        fecha_real = validar_string("Ingrese la fecha real de finalizacion de la tarea (DD-MM-YYYY) o deje en blanco si no ha finalizado: ")
-        if fecha_real:
-            fecha_real = datetime.datetime.strptime(fecha_real, "%d-%m-%Y").date()
+        while (tiempo_ejecucion <= 0):
+            print("El tiempo de ejecución debe ser mayor a 0.")
+            tiempo_ejecucion = validar_numero("Ingrese el tiempo de ejecucion de la tarea (en horas): ")
+
+        fecha_inicio = validar_fecha("Ingrese la fecha de inicio de la tarea (DD-MM-YYYY): ")
+        while (fecha_inicio is None):
+            print("La fecha de inicio no puede quedar vacia.")
+            fecha_inicio = validar_fecha("Ingrese la fecha de inicio de la tarea (DD-MM-YYYY): ")
+
+        fecha_estimada = validar_fecha("Ingrese la fecha estimada de finalizacion de la tarea (DD-MM-YYYY): ")
+        while (fecha_estimada is None or fecha_estimada < fecha_inicio):
+            print("La fecha estimada es invalida, debe ser mayor o igual a la fecha de inicio.")
+            fecha_estimada = validar_fecha("Ingrese la fecha de inicio de la tarea (DD-MM-YYYY): ")
+
+        fecha_real = validar_fecha("Ingrese la fecha real de finalizacion de la tarea (DD-MM-YYYY) o deje en blanco si no ha finalizado: ")
         persona_cargo = validar_numero("Ingrese el identificador del empleado a cargo de la tarea: ")
 
         # Validar que el id del empleado exista
         empleado_encontrado = buscar_por_indice(empleados, persona_cargo, 1)
+
         while empleado_encontrado is None:
             print(f"No se encontró un empleado con el ID {persona_cargo}. La tarea no se añadirá.")
             persona_cargo = validar_numero("Ingrese un ID de empleado válido: ")
             empleado_encontrado = buscar_por_indice(empleados, persona_cargo, 1)
+
         insertar(tareas, [costo, tiempo_ejecucion, fecha_inicio, fecha_estimada, fecha_real, persona_cargo])
     # calculo de tiempo promedio de tareas
     elif (opcion == 3):
@@ -114,11 +133,9 @@ while True:
                 print(f"No se encontraron tareas realizadas por el empleado con ID {id_persona}.")
     # mostrar tareas a realizar entre 2 fechas
     elif (opcion == 6):
-        fecha_inicio = validar_string("Ingrese la fecha de inicio del rango (DD-MM-YYYY): ")
-        fecha_inicio = datetime.datetime.strptime(fecha_inicio, "%d-%m-%Y").date()
-        fecha_fin = validar_string("Ingrese la fecha de fin del rango (DD-MM-YYYY): ")
-        fecha_fin = datetime.datetime.strptime(fecha_fin, "%d-%m-%Y").date()
-        
+        fecha_inicio = validar_fecha("Ingrese la fecha de inicio del rango (DD-MM-YYYY): ")
+        fecha_fin = validar_fecha("Ingrese la fecha de fin del rango (DD-MM-YYYY): ")
+
         aux = tareas.inicio
         tareas_en_rango = []
         while aux is not None:
@@ -137,18 +154,24 @@ while True:
         tareas_fuera_tiempo = []
         aux = tareas.inicio
         while aux is not None:
-            if aux.info[4] is not None:  # fecha_real
-                if aux.info[4] <= aux.info[3]:  # fecha_real <= fecha_estimada
-                    tareas_en_tiempo.append(aux.info)
-                else:
-                    tareas_fuera_tiempo.append(aux.info)
+            if aux.info[4] <= aux.info[3]:  # fecha_real <= fecha_estimada
+                tareas_en_tiempo.append(aux.info)
+            else:
+                tareas_fuera_tiempo.append(aux.info)
             aux = aux.sig
-        print("Tareas finalizadas a tiempo:")
-        for tarea in tareas_en_tiempo:
-            print(tarea)
-        print("Tareas finalizadas fuera de tiempo:")
-        for tarea in tareas_fuera_tiempo:
-            print(tarea)
+        if (tareas_en_tiempo):
+            print("Tareas finalizadas a tiempo:")
+            for tarea in tareas_en_tiempo:
+                print(tarea)
+        else:
+            print("No se encontraron tareas finalizadas a tiempo.")
+        if (tareas_fuera_tiempo):
+                
+            print("Tareas finalizadas fuera de tiempo:")
+            for tarea in tareas_fuera_tiempo:
+                print(tarea)
+        else:
+            print("No se encontraron tareas finalizadas fuera de tiempo.")
     # mostrar tareas pendientes de una persona
     elif (opcion == 8):
         id_persona = validar_numero("Ingrese el identificador del empleado: ")
