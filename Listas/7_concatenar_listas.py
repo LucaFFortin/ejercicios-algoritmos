@@ -28,8 +28,8 @@ while (True):
         limpiar()
         break
     elif (opcion == "si"):
-        numero = input("Ingrese el numero que quiere guardar: ")
-        insertar(lista, numero)        
+        dato = input("Ingrese el dato que quiere guardar: ")
+        insertar(lista, dato)        
         limpiar()
     else:    
         limpiar()
@@ -42,8 +42,8 @@ while (True):
         limpiar()
         break
     elif (opcion == "si"):
-        numero = input("Ingrese el numero que quiere guardar: ")
-        insertar(lista_secundaria, numero)        
+        dato = input("Ingrese el dato que quiere guardar: ")
+        insertar(lista_secundaria, dato)        
         limpiar()
     else:    
         limpiar()
