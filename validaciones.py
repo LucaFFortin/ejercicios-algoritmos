@@ -70,38 +70,17 @@ def validar_caracter_especial(mensaje):
 
 def validar_string(mensaje):
     """
-    ABSTRACCIÓN: Solicita y devuelve una cadena de texto alfabética.
+    ABSTRACCIÓN: Solicita y devuelve una cadena de texto.
     - Entrada: Un string con el mensaje para el usuario.
-    - Salida: Un string que solo contiene letras y/o espacios (no vacío).
+    - Salida: Un string no vacío.
     """
     while True:
         entrada = input(mensaje)
-        if entrada == "":
+        if entrada.strip() == "":
             print("Error: El campo no puede quedar vacío.")
             continue
-            
-        es_texto_puro = True
-        solo_espacios = True
-        
-        for caracter in entrada:
-            es_letra = ('a' <= caracter <= 'z') or ('A' <= caracter <= 'Z')
-            es_espacio = (caracter == ' ')
-            
-            if not es_espacio:
-                solo_espacios = False
-                
-            if not (es_letra or es_espacio):
-                es_texto_puro = False
-                break
-                
-        if solo_espacios:
-            print("Error: El campo no puede contener únicamente espacios vacíos.")
-            continue
-            
-        if es_texto_puro:
-            return entrada
         else:
-            print("Error: El texto solo debe contener letras y espacios.")
+            return entrada
 
 
 def validar_contrasenia(mensaje):
