@@ -125,7 +125,19 @@ ejercicios = {
         19: ["python", r"Colas\Ej19_cola_circular.py"],
         20: ["python", r"Colas\Ej20_puesto_peaje.py"],
         21: ["python", r"Colas\Ej21_aeropuerto.py"],
-    }
+    },
+    "Listas": {
+        1:  ["python", r"Listas\1_contar_nodos.py"],
+        2:  ["python", r"Listas\2_eliminar_vocales.py"],
+        3:  ["python", r"Listas\3_dividir_paridad.py"],
+        4:  ["python", r"Listas\4_insertar_nodo.py"],
+        5:  ["python", r"Listas\5_eliminar_primos.py"],
+        7:  ["python", r"Listas\7_concatenar_listas.py"],
+        8:  ["python", r"Listas\8_palindromo_lista_enlazada.py"],
+        9:  ["python", r"Listas\9_alumnos_curso.py"],
+        14: ["python", r"Listas\14_dados_lista_circular.py"],
+        16: ["python", r"Listas\16_proyecto_software.py"],
+    },
 }
 
 lista_ejercicios_repaso = """A continuacion se listaran los ejercicios disponibles
@@ -194,9 +206,23 @@ lista_ejercicios_colas = """
 21: Aeropuerto
 """
 
+lista_ejercicios_listas = """
+1: Contar nodos
+2: Eliminar vocales
+3: Dividir por paridad
+4: Insertar nodo
+5: Eliminar primos
+7: Concatenar listas
+8: Palíndromo en lista enlazada
+9: Alumnos en curso
+14: Dados en lista circular
+16: Proyecto de software
+"""
+
 print("Bienvenido al sistema de ejercicios\n")
 while (True):
     opcion = input("Que ejercicios desea ver (Repaso, Pilas o Colas, 0 para salir): ").lower()
+
     if (opcion == "repaso"):
         print(lista_ejercicios_repaso)
         opcion = int(input("Escriba el numero del ejercicio que desea ejecutar: "))
@@ -204,6 +230,7 @@ while (True):
             subprocess.run(ejercicios["Repaso"][opcion])
         else:
             print("El programa seleccionado no existe.")
+
     elif (opcion == "pilas"):
         print(lista_ejercicios_pilas)
         opcion = int(input("Escriba el numero del ejercicio que desea ejecutar: "))
@@ -211,6 +238,7 @@ while (True):
             subprocess.run(ejercicios["Pilas"][opcion])
         else:
             print("El programa seleccionado no existe.")
+
     elif (opcion == "colas"):
         print(lista_ejercicios_colas)
         opcion = int(input("Escriba el numero del ejercicio que desea ejecutar: "))
@@ -218,6 +246,16 @@ while (True):
             subprocess.run(ejercicios["Colas"][opcion])
         else:
             print("El programa seleccionado no existe.")
+
+    elif (opcion == "listas"):
+        print(lista_ejercicios_listas)
+        opcion = int(input("Escriba el numero del ejercicio que desea ejecutar: "))
+        if (opcion in [1, 2, 3, 4, 5, 7, 8, 9, 14, 16]):
+            subprocess.run(ejercicios["Listas"][opcion])
+        else:
+            print("El programa seleccionado no existe.")
+
     elif (opcion == "0"): break
+
     else:
         print("Opcion invalida, seleccione una de las opciones listadas.")
