@@ -11,76 +11,13 @@ f. indicar cuántas tareas le quedan pendientes a una determinada persona, indic
 """
 import sys
 from pathlib import Path
-import datetime, time
+import datetime
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from validaciones import validar_string, validar_numero_flotante, validar_numero
 from utils import limpiar
 from tda_listas import insertar, lista_vacia, eliminar, barrido, tamanio, buscar, criterio, buscar_criterio, insertar_criterio, eliminar_criterio, Lista, nodoLista
-
-"""
-persona: {
-    nombre string
-    id int
-}
-
-tarea {
-    costo float
-    tiempo_ejecucion timestamp
-    fecha_inicio timestamp
-    fecha_estimada timestamp
-    fecha_real timestamp
-    persona_cargo int (id_persona)
-}
-"""
-
-"""
-tiempo promedio de tareas
-calculo de total de todos los dias u horas de las fechas (suponiendo 8 horas diarias)
-dividir por cantidad de dias totales (en caso de horas)
-dividir por cantidad de tareas para saber promedio
-"""
-"""
-Costo total proyecto
-iterar tareas
-sumar costo
-retornar suma total
-"""
-"""
-ACtividades por persona
-pedir id de persona
-iterar tareas
-guardar tareas con cargo = id si tiempo_real no es nulo
-mostrar tareas despues (o durante ejecucion)
-"""
-"""
-mostrar la información de las tareas a realizar entre dos fechas dadas
-pedir fechas inicio y fin
-iterar tareas
-guardar tareas que esten dentro del rango de fechas
-mostrar tareas despues (o durante ejecucion)
-"""
-"""
-mostrar las tareas finalizadas en tiempo y las finalizadas fuera de tiempo
-iterar tareas
-comparar fecha estimada y fecha real (efectiva)
-si fecha_real es menor o igual que fecha estimada guardar en tareas_en_tiempo
-sino guardar en tareas_excedidas_tiempo
-mostrar tareas_en_tiempo
-mostrar tareas_excedidas_tiempo
-"""
-"""
-indicar cuántas tareas le quedan pendientes a una determinada persona, indicada por el usuario
-pedir id persona
-iterar tareas
-guardar tarea si fecha real es nulo
-mostrar tareas guardadas
-"""
-
-"""
-validar id_personal cuando se ingresan las tareas
-"""
 
 def buscar_por_indice(lista, valor_buscado, indice):
     aux = lista.inicio
@@ -108,10 +45,12 @@ while True:
 
     limpiar()
 
+    # ingreso de empleado
     if (opcion == 1):
         nombre = validar_string("Ingrese el nombre del empleado: ")
         id = validar_numero("Ingrese el identificador del empleado: ")
         insertar(empleados, [nombre, id])
+    # ingreso de tarea
     elif (opcion == 2):
         costo = validar_numero_flotante("Ingrese el costo de la tarea: ")
         tiempo_ejecucion = validar_numero("Ingrese el tiempo de ejecucion de la tarea (en horas): ")
@@ -126,10 +65,12 @@ while True:
 
         # Validar que el id del empleado exista
         empleado_encontrado = buscar_por_indice(empleados, persona_cargo, 1)
-        if empleado_encontrado is None:
+        while empleado_encontrado is None:
             print(f"No se encontró un empleado con el ID {persona_cargo}. La tarea no se añadirá.")
-        else:
-            insertar(tareas, [costo, tiempo_ejecucion, fecha_inicio, fecha_estimada, fecha_real, persona_cargo])
+            persona_cargo = validar_numero("Ingrese un ID de empleado válido: ")
+            empleado_encontrado = buscar_por_indice(empleados, persona_cargo, 1)
+        insertar(tareas, [costo, tiempo_ejecucion, fecha_inicio, fecha_estimada, fecha_real, persona_cargo])
+    # calculo de tiempo promedio de tareas
     elif (opcion == 3):
         total_tiempo = 0
         total_tareas = tamanio(tareas)
@@ -142,6 +83,7 @@ while True:
             print(f"El tiempo promedio de las tareas es: {promedio_tiempo} horas.")
         else:
             print("No hay tareas registradas para calcular el tiempo promedio.")
+    # calculo de costo total del proyecto
     elif (opcion == 4):
         total_costo = 0
         aux = tareas.inicio
@@ -149,13 +91,14 @@ while True:
             total_costo += aux.info[0]  # costo
             aux = aux.sig
         print(f"El costo total del proyecto es: {total_costo}.")
+    # mostrar tareas realizadas de una persona
     elif (opcion == 5):
         id_persona = validar_numero("Ingrese el identificador del empleado: ")
 
         # Validar que el id del empleado exista
         empleado_encontrado = buscar_por_indice(empleados, id_persona, 1)
         if empleado_encontrado is None:
-            print(f"No se encontró un empleado con el ID {persona_cargo}. La tarea no se añadirá.")
+            print(f"No se encontró un empleado con el ID {id_persona}. La tarea no se añadirá.")
         else:
             aux = tareas.inicio
             tareas_persona = []
@@ -169,6 +112,7 @@ while True:
                     print(tarea)
             else:
                 print(f"No se encontraron tareas realizadas por el empleado con ID {id_persona}.")
+    # mostrar tareas a realizar entre 2 fechas
     elif (opcion == 6):
         fecha_inicio = validar_string("Ingrese la fecha de inicio del rango (DD-MM-YYYY): ")
         fecha_inicio = datetime.datetime.strptime(fecha_inicio, "%d-%m-%Y").date()
@@ -187,6 +131,7 @@ while True:
                 print(tarea)
         else:
             print(f"No se encontraron tareas a realizar entre {fecha_inicio} y {fecha_fin}.")
+    # mostrar tareas realizadas a tiempo y fuera de tiempo
     elif (opcion == 7):
         tareas_en_tiempo = []
         tareas_fuera_tiempo = []
@@ -204,21 +149,30 @@ while True:
         print("Tareas finalizadas fuera de tiempo:")
         for tarea in tareas_fuera_tiempo:
             print(tarea)
+    # mostrar tareas pendientes de una persona
     elif (opcion == 8):
         id_persona = validar_numero("Ingrese el identificador del empleado: ")
-        aux = tareas.inicio
-        tareas_pendientes = []
-        while aux is not None:
-            if aux.info[5] == id_persona and aux.info[4] is None:  # persona_cargo y fecha_real
-                tareas_pendientes.append(aux.info)
-            aux = aux.sig
-        if tareas_pendientes:
-            print(f"Tareas pendientes del empleado con ID {id_persona}:")
-            for tarea in tareas_pendientes:
-                print(tarea)
+        
+        # Validar que el id del empleado exista
+        empleado_encontrado = buscar_por_indice(empleados, id_persona, 1)
+        if empleado_encontrado is None:
+            print(f"No se encontró un empleado con el ID {id_persona}. La tarea no se añadirá.")
         else:
-            print(f"No se encontraron tareas pendientes para el empleado con ID {id_persona}.")
+            aux = tareas.inicio
+            tareas_pendientes = []
+            while aux is not None:
+                if aux.info[5] == id_persona and aux.info[4] is None:  # persona_cargo y fecha_real
+                    tareas_pendientes.append(aux.info)
+                aux = aux.sig
+            if tareas_pendientes:
+                print(f"Tareas pendientes del empleado con ID {id_persona}:")
+                for tarea in tareas_pendientes:
+                    print(tarea)
+            else:
+                print(f"No se encontraron tareas pendientes para el empleado con ID {id_persona}.")
+    # condicion de salida
     elif (opcion == 0):
         break
+    # opcion invalida
     else:
         print("Opción no válida. Por favor, intente de nuevo.")
