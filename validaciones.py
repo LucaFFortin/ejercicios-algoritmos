@@ -4,6 +4,19 @@ Este módulo provee funciones de abstracción para controlar las entradas por te
 asegurando tipos de datos y formatos específicos sin romper la ejecución del programa.
 """
 
+import datetime
+
+def validar_fecha(mensaje):
+    while(True):
+        try:
+            entrada = input(mensaje)
+
+            if (entrada == ""): return None
+
+            return datetime.datetime.strptime(entrada, "%d-%m-%Y").date()
+        except:
+            print("El formato de fecha ingresado es incorrecto, debe ingresarla como (DD-MM-YYYY)")
+
 def validar_numero(mensaje):    
     """
     ABSTRACCIÓN: Solicita y devuelve un número entero válido.
