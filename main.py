@@ -3,108 +3,42 @@ import subprocess
 ejercicios = {
     "Repaso": {
 
-        1: [
-            "python",
-            r"Repaso\Semana 1\pascal.py"
-        ],
-
-        2: [
-            "python",
-            r"Repaso\Semana 2\alquiler_automoviles.py"
-        ],
-
-        3: [
-            "python",
-            r"Repaso\Semana 2\convertidor_temperatura.py"
-        ],
-
-        4: [
-            "python",
-            r"Repaso\Semana 2\primo_compuesto.py"
-        ],
-
-        5: [
-            "python",
-            r"Repaso\Semana 2\serie_armonica.py"
-        ],
-
-        6: [
-            "python",
-            r"Repaso\Semana 3\combinacion_bits.py"
-        ],
-
-        7: [
-            "python",
-            r"Repaso\Semana 3\combinacion_letras.py"
-        ],
-
-        8: [
-            "python",
-            r"Repaso\Semana 3\factorial.py"
-        ],
-
-        9: [
-            "python",
-            r"Repaso\Semana 3\numeros_perfectos.py"
-        ],
-
-        10: [
-            "python",
-            r"Repaso\Semana 4\histograma_frecuencias.py"
-        ],
-
-        11: [
-            "python",
-            r"Repaso\Semana 4\lector_matriz.py"
-        ],
-
-        12: [
-            "python",
-            r"Repaso\Semana 4\matriz_simetrica.py"
-        ],
-
-        13: [
-            "python",
-            r"Repaso\Semana 4\numeros_vampiros.py"
-        ]
+        1: ["python",r"Repaso\Semana 1\pascal.py"],
+        2: ["python",r"Repaso\Semana 2\alquiler_automoviles.py"],
+        3: ["python",r"Repaso\Semana 2\convertidor_temperatura.py"],
+        4: ["python",r"Repaso\Semana 2\primo_compuesto.py"],
+        5: ["python",r"Repaso\Semana 2\serie_armonica.py"],
+        6: ["python",r"Repaso\Semana 3\combinacion_bits.py"],
+        7: ["python",r"Repaso\Semana 3\combinacion_letras.py"],
+        8: ["python",r"Repaso\Semana 3\factorial.py"],
+        9: ["python",r"Repaso\Semana 3\numeros_perfectos.py"],
+        10: ["python",r"Repaso\Semana 4\histograma_frecuencias.py"],
+        11: ["python",r"Repaso\Semana 4\lector_matriz.py"],
+        12: ["python",r"Repaso\Semana 4\matriz_simetrica.py"],
+        13: ["python",r"Repaso\Semana 4\numeros_vampiros.py"]
     },
+
     "Pilas": {
         1: ["python",r"Pilas\ocurrencias_valor.py"],
-
         2: ["python",r"Pilas\eliminar_impares.py"],
-
         3: ["python",r"Pilas\reemplazar_valor.py"],
-
         4: ["python",r"Pilas\invertir_pila.py"],
-
         5: ["python",r"Pilas\palindromo.py"],
-
         6: ["python",r"Pilas\palabra_inversa.py"],
-
         7: ["python",r"Pilas\eliminar_elemento.py"],
-
         8: ["python",r"Pilas\cartas.py"],
-
         9: ["python",r"Pilas\factorial.py"],
-
         10: ["python",r"Pilas\insertar_atenea.py"],
-
         11: ["python",r"Pilas\contar_vocales.py"],
-
         12: ["python",r"Pilas\encontrar_personajes.py"],
-
         13: ["python",r"Pilas\ironman.py"],
-
         14: ["python",r"Pilas\insertar_ascendente.py"],
-
         17: ["python",r"Pilas\separar_parrafo.py"],
-    
         18: ["python",r"Pilas\objetos_oficina.py"],
-
         20: ["python",r"Pilas\pasos_robot.py"],
-
         23: ["python", r"Pilas\temperatura_abril.py"]
     },
+
     "Colas": {
         1:  ["python", r"Colas\Ej1 eliminar_vocales.py"],
         2:  ["python", r"Colas\Ej2 invertir_cola.py"],
@@ -126,6 +60,7 @@ ejercicios = {
         20: ["python", r"Colas\Ej20_puesto_peaje.py"],
         21: ["python", r"Colas\Ej21_aeropuerto.py"],
     },
+
     "Listas": {
         1:  ["python", r"Listas\1_contar_nodos.py"],
         2:  ["python", r"Listas\2_eliminar_vocales.py"],
@@ -137,6 +72,15 @@ ejercicios = {
         9:  ["python", r"Listas\9_alumnos_curso.py"],
         14: ["python", r"Listas\14_dados_lista_circular.py"],
         16: ["python", r"Listas\16_proyecto_software.py"],
+    }, 
+      
+    "Recursion": {
+        2:  ["python", r"Recursion\2_sumar_numeros.py"],
+        4:  ["python", r"Recursion\4_potencia.py"],
+        6:  ["python", r"Recursion\6_palabra_inversa.py"],
+        7:  ["python", r"Recursion\7_serie_numerica.py"],
+        8:  ["python", r"Recursion\8_conversion_numerica.py"],
+        9:  ["python", r"Recursion\9_logaritmo.py"],
     },
 }
 
@@ -219,9 +163,18 @@ lista_ejercicios_listas = """
 16: Proyecto de software
 """
 
+lista_ejercicios_recursion = """
+2: Sumar numeros
+4: Potencia
+6: Invertir palabra
+7: Serie armonica
+8: Conversion a binario
+9: Logaritmo
+"""
+
 print("Bienvenido al sistema de ejercicios\n")
 while (True):
-    opcion = input("Que ejercicios desea ver (Repaso, Pilas o Colas, 0 para salir): ").lower()
+    opcion = input("Que ejercicios desea ver (Repaso, Pilas, Colas, Listas o recursion 0 para salir): ").lower()
 
     if (opcion == "repaso"):
         print(lista_ejercicios_repaso)
@@ -255,6 +208,13 @@ while (True):
         else:
             print("El programa seleccionado no existe.")
 
+    elif (opcion == "recursion"):
+        print(lista_ejercicios_recursion)
+        opcion = int(input("Escriba el numero del ejercicio que desea ejecutar: "))
+        if (opcion in [2, 4, 6, 7, 8, 9]):
+            subprocess.run(ejercicios["Recursion"][opcion])
+        else:
+            print("El programa seleccionado no existe.")
     elif (opcion == "0"): break
 
     else:
