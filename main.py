@@ -1,8 +1,7 @@
 import subprocess
-
+# add new recursion exercises
 ejercicios = {
     "Repaso": {
-
         1: ["python",r"Repaso\Semana 1\pascal.py"],
         2: ["python",r"Repaso\Semana 2\alquiler_automoviles.py"],
         3: ["python",r"Repaso\Semana 2\convertidor_temperatura.py"],
@@ -81,6 +80,12 @@ ejercicios = {
         7:  ["python", r"Recursion\7_serie_numerica.py"],
         8:  ["python", r"Recursion\8_conversion_numerica.py"],
         9:  ["python", r"Recursion\9_logaritmo.py"],
+        10: ["python", r"Recursion\10_digitos.py"],
+        11: ["python", r"Recursion\11_invertir_numero.py"],
+        14: ["python", r"Recursion\14_sumar_digitos.py"],
+        17: ["python", r"Recursion\17_recorrer_vector.py"],
+        18: ["python", r"Recursion\18_recorrer_matriz.py"],
+        19: ["python", r"Recursion\19_sucesion_recursiva.py"],
     },
 }
 
@@ -170,6 +175,12 @@ lista_ejercicios_recursion = """
 7: Serie armonica
 8: Conversion a binario
 9: Logaritmo
+10 Contar digitos
+11: Invertir numero
+14: Sumar digitos
+17: Recorrec verctor
+18: Recorrer matriz
+19: Sucesion recursiva
 """
 
 print("Bienvenido al sistema de ejercicios\n")
@@ -211,7 +222,7 @@ while (True):
     elif (opcion == "recursion"):
         print(lista_ejercicios_recursion)
         opcion = int(input("Escriba el numero del ejercicio que desea ejecutar: "))
-        if (opcion in [2, 4, 6, 7, 8, 9]):
+        if (opcion in [2, 4, 6, 7, 8, 9, 10, 11, 14, 17, 18, 19]):
             subprocess.run(ejercicios["Recursion"][opcion])
         else:
             print("El programa seleccionado no existe.")
