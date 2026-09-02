@@ -1,5 +1,5 @@
 import subprocess
-# add new recursion exercises
+
 ejercicios = {
     "Repaso": {
         1: ["python",r"Repaso\Semana 1\pascal.py"],
@@ -86,6 +86,8 @@ ejercicios = {
         17: ["python", r"Recursion\17_recorrer_vector.py"],
         18: ["python", r"Recursion\18_recorrer_matriz.py"],
         19: ["python", r"Recursion\19_sucesion_recursiva.py"],
+        20: ["python", r"Recursion\20_busqueda_secuencial_centinela.py"],
+        28: ["python", r"Recursion\28_segunda_sucesion.py"]
     },
 }
 
@@ -181,6 +183,8 @@ lista_ejercicios_recursion = """
 17: Recorrec verctor
 18: Recorrer matriz
 19: Sucesion recursiva
+20: Busqueda secuencial con centinela
+28: segunda sucesion
 """
 
 print("Bienvenido al sistema de ejercicios\n")
@@ -222,7 +226,7 @@ while (True):
     elif (opcion == "recursion"):
         print(lista_ejercicios_recursion)
         opcion = int(input("Escriba el numero del ejercicio que desea ejecutar: "))
-        if (opcion in [2, 4, 6, 7, 8, 9, 10, 11, 14, 17, 18, 19]):
+        if (opcion in [2, 4, 6, 7, 8, 9, 10, 11, 14, 17, 18, 19, 20, 28]):
             subprocess.run(ejercicios["Recursion"][opcion])
         else:
             print("El programa seleccionado no existe.")
